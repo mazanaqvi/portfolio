@@ -1011,6 +1011,11 @@ section {
   border-color: #ff0000;
 }
 
+.social-link.stackoverflow:hover {
+  background: #f48024;
+  border-color: #f48024;
+}
+
 .social-link i {
   font-size: 1.2rem;
 }
