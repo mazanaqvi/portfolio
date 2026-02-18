@@ -1823,6 +1823,56 @@ section {
   }
 }
 
+// ===== NATIVE APP SAFE AREA HANDLING =====
+body.native-app {
+  padding-top: env(safe-area-inset-top);
+}
+
+.native-app {
+  .theme-btn {
+    top: calc(env(safe-area-inset-top) + 12px);
+    right: calc(env(safe-area-inset-right) + 12px);
+  }
+
+  .controls {
+    right: calc(env(safe-area-inset-right) + 3%);
+  }
+
+  header {
+    padding-top: env(safe-area-inset-top) !important;
+  }
+
+  section {
+    padding-left: calc(env(safe-area-inset-left) + clamp(2rem, 10vw, 18rem));
+    padding-right: calc(env(safe-area-inset-right) + clamp(2rem, 10vw, 18rem));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .native-app {
+    .controls {
+      right: auto;
+      bottom: 0;
+      padding-bottom: env(safe-area-inset-bottom);
+      border-radius: 0;
+    }
+
+    section {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 80px);
+      padding-left: calc(env(safe-area-inset-left) + 1.5rem);
+      padding-right: calc(env(safe-area-inset-right) + 1.5rem);
+    }
+
+    header {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 80px) !important;
+    }
+
+    .header-content {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 80px);
+    }
+  }
+}
+
 // Very small phones
 @media screen and (max-width: 400px) {
   .container { padding: 1.5rem 1rem !important; }

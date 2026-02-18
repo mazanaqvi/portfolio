@@ -19,6 +19,15 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Signing keys
+*.jks
+*.keystore
+android/key.properties
+
+# APK / AAB build outputs
+*.apk
+*.aab
+
 # Capacitor native build artifacts
 android/.gradle/
 android/app/build/
