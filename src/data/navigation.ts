@@ -11,5 +11,6 @@ export const navItems: NavItem[] = [
   { id: "websites", path: "/websites", icon: "fas fa-globe", label: "Websites" },
   { id: "live-apps", path: "/live-apps", icon: "fas fa-rocket", label: "Live Apps" },
   { id: "about", path: "/about", icon: "fas fa-user", label: "About" },
+  { id: "reviews", path: "/reviews", icon: "fas fa-star", label: "Reviews" },
   { id: "contact", path: "/contact", icon: "fas fa-envelope-open", label: "Contact" },
 ];

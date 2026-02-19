@@ -6,6 +6,7 @@ import WebsitesPage from "./pages/WebsitesPage";
 import MobileAppsPage from "./pages/MobileAppsPage";
 import LiveAppsPage from "./pages/LiveAppsPage";
 import ContactPage from "./pages/ContactPage";
+import ReviewsPage from "./pages/ReviewsPage";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactPage />,
+      },
+      {
+        path: "reviews",
+        element: <ReviewsPage />,
       },
       {
         path: "*",
