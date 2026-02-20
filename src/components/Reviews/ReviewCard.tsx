@@ -38,24 +38,18 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, index }) => {
           <i className="fas fa-briefcase"></i>
           <span className="review-project-title">{review.projectTitle}</span>
         </div>
-        <div className="review-project-meta">
-          <span
-            className={`review-type-badge ${
-              review.projectType === "Hourly" ? "badge-hourly" : "badge-fixed"
+        <span
+          className={`review-type-badge ${
+            review.projectType === "Hourly" ? "badge-hourly" : "badge-fixed"
+          }`}
+        >
+          <i
+            className={`fas ${
+              review.projectType === "Hourly" ? "fa-clock" : "fa-tag"
             }`}
-          >
-            <i
-              className={`fas ${
-                review.projectType === "Hourly" ? "fa-clock" : "fa-tag"
-              }`}
-            ></i>
-            {review.projectType}
-          </span>
-          <span className="review-budget">
-            <i className="fas fa-dollar-sign"></i>
-            {review.budget}
-          </span>
-        </div>
+          ></i>
+          {review.projectType}
+        </span>
       </div>
     </div>
   );

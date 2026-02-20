@@ -2,7 +2,6 @@ export interface Review {
   id: string;
   projectTitle: string;
   projectType: "Fixed Price" | "Hourly";
-  budget: string;
   rating: number;
   date: string;
   review: string;
@@ -30,7 +29,6 @@ export const reviews: Review[] = [
     id: "1",
     projectTitle: "Flutter Food Delivery App with Real-Time Tracking",
     projectType: "Fixed Price",
-    budget: "$220.00",
     rating: 5,
     date: "Jan 16, 2026 - Feb 11, 2026",
     review:
@@ -40,7 +38,6 @@ export const reviews: Review[] = [
     id: "2",
     projectTitle: "UI & Bug fixes",
     projectType: "Fixed Price",
-    budget: "$825.00",
     rating: 5,
     date: "Sep 17, 2025 - Jan 10, 2026",
     review:
@@ -50,7 +47,6 @@ export const reviews: Review[] = [
     id: "3",
     projectTitle: "Need help with Flutterflow project that pulls Airtable data",
     projectType: "Hourly",
-    budget: "$15.00 /hr",
     rating: 5,
     date: "Jun 23, 2023 - Aug 13, 2025",
     review:
@@ -60,7 +56,6 @@ export const reviews: Review[] = [
     id: "4",
     projectTitle: "Flutter Backend Assistance",
     projectType: "Fixed Price",
-    budget: "$2,500.00",
     rating: 5,
     date: "Mar 12, 2024 - Jan 14, 2025",
     review:
@@ -70,7 +65,6 @@ export const reviews: Review[] = [
     id: "5",
     projectTitle: "Mobile App Developer with AWS experience",
     projectType: "Fixed Price",
-    budget: "$1,317.50",
     rating: 5,
     date: "Nov 17, 2023 - Mar 27, 2024",
     review:
@@ -80,7 +74,6 @@ export const reviews: Review[] = [
     id: "6",
     projectTitle: "Looking for a FlutterFlow mobile app developer",
     projectType: "Fixed Price",
-    budget: "$700.00",
     rating: 5,
     date: "Oct 10, 2023 - Mar 5, 2024",
     review:
@@ -90,7 +83,6 @@ export const reviews: Review[] = [
     id: "7",
     projectTitle: "Mobile Flutter (Front End) Engineer",
     projectType: "Hourly",
-    budget: "$6.00 /hr",
     rating: 5,
     date: "Feb 16, 2023 - Jan 17, 2024",
     review:
