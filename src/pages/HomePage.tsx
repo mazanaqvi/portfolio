@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
             <div className="image-wrapper">
               <img
                 src="/img/hero.png"
-                alt="Ali Hamza - Software Engineer"
+                alt="Ali Humza - Software Engineer"
                 className="hero-image"
               />
             </div>

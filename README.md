@@ -1,8 +1,8 @@
-# Ali Hamza — Software Engineer & Mobile App Developer
+# Ali Humza — Software Engineer & Mobile App Developer
 
 <p align="center">
   <a href="https://alihumza.com">
-    <img src="public/img/hero.png" alt="Ali Hamza" width="180" style="border-radius: 50%;" />
+    <img src="public/img/hero.png" alt="Ali Humza" width="180" style="border-radius: 50%;" />
   </a>
 </p>
 
@@ -23,7 +23,7 @@
 
 ## About Me
 
-Hi, I'm **Ali Hamza** — a software engineer from Lahore, Pakistan with **5+ years** of programming experience and a BS in Computer Science from **FAST NUCES**. I specialize in building cross-platform mobile applications with **Flutter** and **React Native**, and crafting robust backend systems with **Node.js**, **Django**, and **Firebase**.
+Hi, I'm **Ali Humza** — a software engineer from Lahore, Pakistan with **5+ years** of programming experience and a BS in Computer Science from **FAST NUCES**. I specialize in building cross-platform mobile applications with **Flutter** and **React Native**, and crafting robust backend systems with **Node.js**, **Django**, and **Firebase**.
 
 I've completed **20+ projects** across freelance, startup, and enterprise environments — from fintech and e-commerce to religious education and crypto platforms. I'm currently a **Senior Developer at Breezelab Singapore**, working remotely on advanced mobile applications.
 
@@ -59,7 +59,7 @@ I'm also the founder of **[XrossApps](https://www.xrossapps.com/)**, my software
 
 ## Published Live Apps
 
-All apps are built by **Ali Hamza** and are live on the App Store and/or Google Play:
+All apps are built by **Ali Humza** and are live on the App Store and/or Google Play:
 
 | App | Platforms |
 |-----|-----------|
@@ -141,5 +141,5 @@ This project automatically deploys to **GitHub Pages** via GitHub Actions. Every
 ---
 
 <p align="center">
-  Made with &#10084; by Ali Hamza
+  Made with &#10084; by Ali Humza
 </p>

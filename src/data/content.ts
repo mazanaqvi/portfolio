@@ -1,7 +1,7 @@
 export const heroContent = {
   greeting: "Hello, I'm",
   firstName: "Ali",
-  lastName: "Hamza",
+  lastName: "Humza",
   rolePrefix: "I'm a",
   roles: [
     "Flutter Developer",
@@ -56,7 +56,7 @@ export const liveAppsContent = {
   pageTitle: "Published",
   pageTitleHighlight: "Live Apps",
   pageSubtitle:
-    "Applications published on the iOS App Store and Google Play Store — built by Ali Hamza.",
+    "Applications published on the iOS App Store and Google Play Store — built by Ali Humza.",
 };
 
 export const contactContent = {
