@@ -1,17 +1,16 @@
 import PortfolioGrid from "../components/Portfolio/PortfolioGrid";
 import { liveApps } from "../data/portfolio";
+import { liveAppsContent } from "../data/content";
 
 const LiveAppsPage: React.FC = () => {
   return (
     <section className="container active" id="live-apps">
       <div className="page-header anim-fade-up">
-        <span className="page-tag"><i className="fas fa-rocket"></i> Live Apps</span>
+        <span className="page-tag"><i className="fas fa-rocket"></i> {liveAppsContent.pageTag}</span>
         <h2 className="page-title">
-          Published <span className="highlight">Live Apps</span>
+          {liveAppsContent.pageTitle} <span className="highlight">{liveAppsContent.pageTitleHighlight}</span>
         </h2>
-        <p className="page-subtitle">
-          Applications published on the iOS App Store and Google Play Store — built by <strong>Ali Hamza</strong>.
-        </p>
+        <p className="page-subtitle">{liveAppsContent.pageSubtitle}</p>
       </div>
       <PortfolioGrid items={liveApps} />
     </section>

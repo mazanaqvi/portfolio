@@ -1,17 +1,16 @@
 import { contactInfo, contactSocialLinks } from "../data/socialLinks";
+import { contactContent } from "../data/content";
 
 const ContactPage: React.FC = () => {
   return (
     <section className="container contact active" id="contact">
       <div className="contact-container">
         <div className="page-header anim-fade-up">
-          <span className="page-tag"><i className="fas fa-envelope-open"></i> Contact</span>
+          <span className="page-tag"><i className="fas fa-envelope-open"></i> {contactContent.pageTag}</span>
           <h2 className="page-title">
-            Get In <span className="highlight">Touch</span>
+            {contactContent.pageTitle} <span className="highlight">{contactContent.pageTitleHighlight}</span>
           </h2>
-          <p className="page-subtitle">
-            Ready to bring your ideas to life? Let's build something amazing together.
-          </p>
+          <p className="page-subtitle">{contactContent.pageSubtitle}</p>
         </div>
 
         <div className="contact-content-con">
@@ -70,7 +69,7 @@ const ContactPage: React.FC = () => {
             </div>
 
             <div className="social-connect anim-fade-up" style={{ animationDelay: "0.4s" }}>
-              <h4>Follow Me</h4>
+              <h4>{contactContent.socialHeading}</h4>
               <div className="social-links">
                 {contactSocialLinks.map((link) => (
                   <a
@@ -96,16 +95,14 @@ const ContactPage: React.FC = () => {
                 <i className="fas fa-rocket"></i>
               </div>
               <div className="cta-text">
-                <h3>Ready to Start Your Project?</h3>
-                <p>
-                  Let's discuss your ideas and build something amazing together!
-                </p>
+                <h3>{contactContent.ctaTitle}</h3>
+                <p>{contactContent.ctaDescription}</p>
               </div>
             </div>
             <div className="cta-right">
               <div className="cta-buttons">
                 <a
-                  href={`mailto:${contactInfo.email}?subject=Project Inquiry&body=Hi Ali, I'm interested in discussing a project with you.`}
+                  href={`mailto:${contactInfo.email}?subject=${encodeURIComponent(contactContent.emailSubject)}&body=${encodeURIComponent(contactContent.emailBody)}`}
                   className="primary-cta-btn"
                 >
                   <i className="fas fa-envelope"></i>

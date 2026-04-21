@@ -79,4 +79,4 @@ export const career: TimelineItem[] = [
   },
 ];
 
-export const RESUME_DOWNLOAD_LINK = "/resume/august_2025.pdf";
+export const RESUME_DOWNLOAD_LINK = "https://docs.google.com/document/d/1nEcvLGT7tnhtc58uXBfDc9HeeVokgswilXW4vx-5jM0/export?format=pdf";
