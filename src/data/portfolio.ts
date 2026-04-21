@@ -21,109 +21,177 @@ export const websiteProjects: PortfolioItem[] = [
     links: [{ type: "web", url: "https://app.salesbuckets.com/" }],
   },
   {
-    id: "crypto-website",
-    title: "Crypto Website",
-    image: "/img/port12.png",
-    links: [{ type: "web", url: "https://bitbuddy.ai/" }],
+    id: "bache-erp",
+    title: "Bache ERP",
+    image: "/img/bache.png",
+    links: [{ type: "web", url: "https://bachegateway.web.app/#/minified:ps" }],
+  },
+  {
+    id: "cars-bazaar",
+    title: "Cars Bazaar",
+    image: "/img/carbazaar.png",
+    links: [{ type: "web", url: "https://carsbazzaar.web.app/" }],
+  },
+  {
+    id: "xrossapps",
+    title: "XrossApps",
+    image: "/img/xrossapps.png",
+    links: [{ type: "web", url: "https://www.xrossapps.com/" }],
   },
 ];
 
 export const mobileProjects: PortfolioItem[] = [
   {
-    id: "eclaim-mobile",
-    title: "Live App",
-    image: "/img/port10.png",
+    id: "baker-baby-mobile",
+    title: "Baker Baby",
+    image: "/img/bakerbaby.png",
     links: [
       {
-        type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=com.fujitec.fujitec_eclaim",
+        type: "appstore",
+        url: "https://apps.apple.com/us/app/baker-baby/id6747993789",
       },
+    ],
+  },
+  {
+    id: "eclaim-mobile",
+    title: "eClaim",
+    image: "/img/port10.png",
+    links: [
       {
         type: "appstore",
         url: "https://apps.apple.com/pk/app/engagenova-eclaims/id1556445883",
       },
-    ],
-  },
-  {
-    id: "quran-mobile",
-    title: "Live App",
-    image: "/img/port11.png",
-    links: [
       {
         type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=kw.gov.qsa.quranapp&hl=ur",
-      },
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/us/app/kuwait-quran-%D9%85%D8%B5%D8%AD%D9%81-%D8%AF%D9%88%D9%84%D8%A9-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA/id1661634739",
+        url: "https://play.google.com/store/apps/details?id=com.fujitec.fujitec_eclaim",
       },
     ],
   },
   {
-    id: "mashrab-mobile",
-    title: "Live App",
-    image: "/img/port2.png",
+    id: "kindshare-mobile",
+    title: "KindShare",
+    image: "/img/kindshare.png",
     links: [
       {
-        type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=com.azaan.mashrabenaab",
+        type: "appstore",
+        url: "https://apps.apple.com/pk/app/kindshare-app/id6752961693",
       },
       {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.kindshare.app",
+      },
+    ],
+  },
+  {
+    id: "hit-rewind-mobile",
+    title: "Hit Rewind (iOS & Apple TV)",
+    image: "/img/hitrewind.png",
+    links: [
+      {
         type: "appstore",
-        url: "https://apps.apple.com/pk/app/mashrab-e-naab/id6443939739",
+        url: "https://apps.apple.com/us/app/music-videos-hit-rewind/id6479374259",
+      },
+    ],
+  },
+  {
+    id: "matchark-mobile",
+    title: "Matchark",
+    image: "/img/port13.png",
+    links: [
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/pk/app/matchark/id1671819584",
       },
     ],
   },
   {
     id: "blackmarket-mobile",
-    title: "Live App",
+    title: "My Black Market",
     image: "/img/port5.png",
     links: [
       {
         type: "playstore",
         url: "https://play.google.com/store/apps/details?id=com.myblackmarkete.cypto_app",
       },
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/pk/app/my-black-market/id6446054554",
-      },
     ],
   },
+  
+
   {
-    id: "ecommerce-demo",
-    title: "App Demo",
-    image: "/img/port7.png",
+    id: "mashrab-mobile",
+    title: "Mashrab e Naab",
+    image: "/img/port2.png",
     links: [
       {
-        type: "youtube",
-        url: "https://www.youtube.com/watch?v=EBiEi_3AOkc&ab_channel=AliHamza",
+        type: "appstore",
+        url: "https://apps.apple.com/pk/app/mashrab-e-naab/id6443939739",
+      },
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.azaan.mashrabenaab",
       },
     ],
   },
   {
-    id: "flutter-material",
-    title: "Made With,",
-    image: "/img/port4.png",
-    techStack: ["Flutter", "Material UI Kit"],
-    links: [],
+    id: "quran-mobile",
+    title: "Moshaf (Book reading app)",
+    image: "/img/port11.png",
+    links: [
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/us/app/kuwait-quran-%D9%85%D8%B5%D8%AD%D9%81-%D8%AF%D9%88%D9%84%D8%A9-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA/id1661634739",
+      },
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=kw.gov.qsa.quranapp&hl=ur",
+      },
+    ],
   },
-  {
-    id: "flutter-firebase",
-    title: "Made With,",
-    image: "/img/port6.png",
-    techStack: ["Flutter", "Firebase"],
-    links: [],
-  },
-  {
-    id: "flutter-ml",
-    title: "Made With,",
-    image: "/img/port1.png",
-    techStack: ["Flutter", "Firebase", "Machine Learning API"],
-    links: [],
-  },
+  
 ];
 
 export const liveApps: PortfolioItem[] = [
+  {
+    id: "eclaim",
+    title: "eClaim",
+    image: "/img/port10.png",
+    links: [
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/pk/app/engagenova-eclaims/id1556445883",
+      },
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.fujitec.fujitec_eclaim",
+      },
+    ],
+  },
+  {
+    id: "kindshare",
+    title: "KindShare",
+    image: "/img/kindshare.png",
+    links: [
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/pk/app/kindshare-app/id6752961693",
+      },
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.kindshare.app",
+      },
+    ],
+  },
+  {
+    id: "hit-rewind",
+    title: "Hit Rewind (iOS & Apple TV)",
+    image: "/img/hitrewind.png",
+    links: [
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/us/app/music-videos-hit-rewind/id6479374259",
+      },
+    ],
+  },
   {
     id: "matchark",
     title: "Matchark",
@@ -211,35 +279,9 @@ export const liveApps: PortfolioItem[] = [
     ],
   },
   {
-    id: "eclaim",
-    title: "eClaim",
-    image: "/img/port10.png",
-    links: [
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/pk/app/engagenova-eclaims/id1556445883",
-      },
-      {
-        type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=com.fujitec.fujitec_eclaim",
-      },
-    ],
-  },
-  {
     id: "salesbucket",
     title: "Salesbucket",
     image: "/img/port0.png",
     links: [{ type: "web", url: "https://app.salesbuckets.com/" }],
-  },
-  {
-    id: "front-row",
-    title: "Front Row",
-    image: "/img/port4.png",
-    links: [
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/pk/app/front-row-live-videos/id6450548577",
-      },
-    ],
   },
 ];

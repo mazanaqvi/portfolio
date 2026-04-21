@@ -3,6 +3,7 @@ import SkillBar from "../components/About/SkillBar";
 import StatCard from "../components/About/StatCard";
 import Timeline from "../components/About/Timeline";
 import { skills, stats, education, career, RESUME_DOWNLOAD_LINK } from "../data/about";
+import { aboutContent } from "../data/content";
 
 const AboutPage: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -20,27 +21,19 @@ const AboutPage: React.FC = () => {
       ref={ref}
     >
       <div className="page-header anim-fade-up">
-        <span className="page-tag"><i className="fas fa-user"></i> About</span>
+        <span className="page-tag"><i className="fas fa-user"></i> {aboutContent.pageTag}</span>
         <h2 className="page-title">
-          Know <span className="highlight">About Me</span>
+          {aboutContent.pageTitle} <span className="highlight">{aboutContent.pageTitleHighlight}</span>
         </h2>
-        <p className="page-subtitle">
-          A passionate software engineer building impactful products across platforms.
-        </p>
+        <p className="page-subtitle">{aboutContent.pageSubtitle}</p>
       </div>
 
       <div className="about-container">
         <div className="left-about anim-fade-up" style={{ animationDelay: "0.2s" }}>
-          <h4>Who I Am</h4>
-          <p>
-            I'm a software engineer passionate about pushing the boundaries of
-            what's possible with mobile and web technologies. With 5+ years of
-            experience, I turn complex ideas into elegant, user-friendly applications.
-          </p>
-          <p>
-            I eagerly learn the latest advancements in technology and constantly
-            grow alongside my work -- always building, always improving.
-          </p>
+          <h4>{aboutContent.whoIAmTitle}</h4>
+          {aboutContent.whoIAmParagraphs.map((text, i) => (
+            <p key={i}>{text}</p>
+          ))}
           <div className="btn-con">
             <a href={RESUME_DOWNLOAD_LINK} className="main-btn" download>
               <span className="btn-text">Download Resume</span>
@@ -59,7 +52,7 @@ const AboutPage: React.FC = () => {
 
       <div className="about-stats anim-fade-up" style={{ animationDelay: "0.5s" }}>
         <h4 className="section-heading">
-          <i className="fas fa-code"></i> My Skills
+          <i className="fas fa-code"></i> {aboutContent.skillsHeading}
         </h4>
         <div className="progress-bars">
           {skills.map((skill, i) => (
@@ -70,7 +63,7 @@ const AboutPage: React.FC = () => {
 
       <div className="anim-fade-up" style={{ animationDelay: "0.6s" }}>
         <h4 className="section-heading">
-          <i className="fas fa-clock"></i> My Timeline
+          <i className="fas fa-clock"></i> {aboutContent.timelineHeading}
         </h4>
         <Timeline title="Education" items={education} />
         <Timeline title="Career" items={career} />

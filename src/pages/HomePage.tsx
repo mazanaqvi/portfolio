@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { heroSocialLinks } from "../data/socialLinks";
 import { RESUME_DOWNLOAD_LINK } from "../data/about";
-
-const roles = [
-  "Flutter Developer",
-  "Mobile App Engineer",
-  "Full-Stack Developer",
-  "Backend Architect",
-  "React Native Developer",
-];
+import { heroContent } from "../data/content";
 
 const HomePage: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -16,14 +9,14 @@ const HomePage: React.FC = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = heroContent.roles[roleIndex];
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && displayText === currentRole) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayText === "") {
       setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
+      setRoleIndex((prev) => (prev + 1) % heroContent.roles.length);
     } else if (isDeleting) {
       timeout = setTimeout(
         () => setDisplayText((prev) => prev.slice(0, -1)),
@@ -48,7 +41,7 @@ const HomePage: React.FC = () => {
             <div className="image-wrapper">
               <img
                 src="/img/hero.png"
-                alt="Ali Hamza - Software Engineer"
+                alt="Ali Humza - Software Engineer"
                 className="hero-image"
               />
             </div>
@@ -77,15 +70,15 @@ const HomePage: React.FC = () => {
           <div className="hero-text-wrapper">
             <div className="hero-greeting anim-fade-up" style={{ animationDelay: "0.2s" }}>
               <span className="greeting-line"></span>
-              <span>Hello, I'm</span>
+              <span>{heroContent.greeting}</span>
             </div>
 
             <h1 className="hero-name anim-fade-up" style={{ animationDelay: "0.4s" }}>
-              Ali <span className="name-accent">Hamza</span>
+              {heroContent.firstName} <span className="name-accent">{heroContent.lastName}</span>
             </h1>
 
             <div className="hero-role anim-fade-up" style={{ animationDelay: "0.6s" }}>
-              <span className="role-prefix">I'm a</span>
+              <span className="role-prefix">{heroContent.rolePrefix}</span>
               <span className="role-typing">
                 {displayText}
                 <span className="typing-cursor">|</span>
@@ -100,20 +93,15 @@ const HomePage: React.FC = () => {
             </p>
 
             <div className="hero-stats anim-fade-up" style={{ animationDelay: "1s" }}>
-              <div className="hero-stat">
-                <span className="hero-stat-number">20+</span>
-                <span className="hero-stat-label">Projects</span>
-              </div>
-              <div className="hero-stat-divider"></div>
-              <div className="hero-stat">
-                <span className="hero-stat-number">5+</span>
-                <span className="hero-stat-label">Years Exp.</span>
-              </div>
-              <div className="hero-stat-divider"></div>
-              <div className="hero-stat">
-                <span className="hero-stat-number">2+</span>
-                <span className="hero-stat-label">Companies</span>
-              </div>
+              {heroContent.heroStats.map((stat, i) => (
+                <span key={stat.label} style={{ display: "contents" }}>
+                  {i > 0 && <div className="hero-stat-divider"></div>}
+                  <div className="hero-stat">
+                    <span className="hero-stat-number">{stat.number}</span>
+                    <span className="hero-stat-label">{stat.label}</span>
+                  </div>
+                </span>
+              ))}
             </div>
 
             <div className="hero-actions anim-fade-up" style={{ animationDelay: "1.2s" }}>
@@ -123,21 +111,10 @@ const HomePage: React.FC = () => {
                   <i className="fas fa-download"></i>
                 </span>
               </a>
-              <a
-                href="https://www.xrossapps.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="main-btn company-btn"
-              >
-                <span className="btn-text">My Company</span>
-                <span className="btn-icon">
-                  <i className="fas fa-external-link-alt"></i>
-                </span>
-              </a>
             </div>
 
             <div className="hero-social-links anim-fade-up" style={{ animationDelay: "1.4s" }}>
-              <h4>Connect With Me</h4>
+              <h4>{heroContent.socialHeading}</h4>
               <div className="hero-social-icons">
                 {heroSocialLinks.map((link) => (
                   <a

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ali Portfolio</string>
+    <string name="title_activity_main">Ali Portfolio</string>
+    <string name="package_name">com.xrossapps.portfolio</string>
+    <string name="custom_url_scheme">com.xrossapps.portfolio</string>
+</resources>
