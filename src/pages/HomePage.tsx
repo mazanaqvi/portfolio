@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { heroSocialLinks } from "../data/socialLinks";
-import { RESUME_DOWNLOAD_LINK } from "../data/about";
 import { heroContent } from "../data/content";
+import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -105,12 +105,18 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="hero-actions anim-fade-up" style={{ animationDelay: "1.2s" }}>
-              <a href={RESUME_DOWNLOAD_LINK} className="main-btn" download>
-                <span className="btn-text">Download Resume</span>
+              <Link to="/resume" className="main-btn">
+                <span className="btn-text">View Resume</span>
                 <span className="btn-icon">
-                  <i className="fas fa-download"></i>
+                  <i className="fas fa-file-alt"></i>
                 </span>
-              </a>
+              </Link>
+              <Link to="/contact" className="main-btn company-btn">
+                <span className="btn-text">Get In Touch</span>
+                <span className="btn-icon">
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </Link>
             </div>
 
             <div className="hero-social-links anim-fade-up" style={{ animationDelay: "1.4s" }}>
