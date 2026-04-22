@@ -40,7 +40,6 @@ const ResumePage: React.FC = () => {
         <div className="resume-paper">
           <h1 className="rv-name">{r.name}</h1>
           <p className="rv-tagline">{r.title}</p>
-          <p className="rv-tagline">{r.technologies}</p>
           <p className="rv-contact">
             {r.email} &middot; {r.phone} &middot;{" "}
             <a href={r.websiteUrl} target="_blank" rel="noreferrer">

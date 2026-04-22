@@ -46,36 +46,20 @@ export const education: TimelineItem[] = [
 
 export const career: TimelineItem[] = [
   {
-    icon: "fas fa-laptop-code",
-    duration: "2020 - Present",
-    title: "Freelance Developer",
-    company: "Upwork",
-    description:
-      "Completed more than 20 mobile apps and websites in these 5 years. Specialized in Flutter development and full-stack web solutions.",
-  },
-  {
-    icon: "fas fa-briefcase",
-    duration: "Jan 2022 - May 2023",
-    title: "Software Engineer",
-    company: "Innovage.io",
-    description:
-      "Worked on different projects in Flutter and developed many cross-platform applications for various clients and industries.",
-  },
-  {
-    icon: "fas fa-globe-americas",
-    duration: "May 2023 - Feb 2024",
-    title: "Remote Software Engineer",
-    company: "Wave USA",
-    description:
-      "Developed Flutter applications for US-based clients, focusing on scalable mobile solutions and cross-platform development.",
-  },
-  {
     icon: "fas fa-code",
-    duration: "Feb 2024 - Present",
-    title: "Senior Developer",
-    company: "Breezelab Singapore",
+    duration: "Feb 2024 – Present",
+    title: "Full-Stack Software Engineer",
+    company: "Breeze Labs · Singapore (Remote)",
     description:
-      "Currently working remotely with Singapore-based team, developing advanced mobile applications and leading Flutter development projects.",
+      "Breeze Labs is a Singapore based software studio building SaaS, web, mobile, and AI products for the US and GCC markets. Shipped React and Next.js web apps, led Flutter and React Native to the App and Play stores for 3 production apps, contributed to LLM code generation training, built a Django-based trading bot with Binance APIs, and integrated Twilio and FullEnrich for a CRM platform.",
+  },
+  {
+    icon: "fas fa-tv",
+    duration: "Jun 2022 – Jan 2024",
+    title: "Mobile Application Developer",
+    company: "FrontRow · USA (Remote)",
+    description:
+      "FrontRow is a US-based entertainment platform for premium music video on iOS and Apple TV. Built iOS and tvOS UI in Swift (UIKit) from spec to production, integrated YouTube iFrame playback, and used Airtable to manage metadata for 500+ media assets so the content team could ship without code changes.",
   },
 ];
 

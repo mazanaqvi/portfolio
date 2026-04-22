@@ -205,16 +205,9 @@ function buildResumeDocument(): Document {
           }),
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 0, after: 30 },
-            children: [
-              new TextRun({ text: r.title, size: 22, color: MUTED, font: "Calibri" }),
-            ],
-          }),
-          new Paragraph({
-            alignment: AlignmentType.CENTER,
             spacing: { before: 0, after: 70 },
             children: [
-              new TextRun({ text: r.technologies, size: 22, color: MUTED, font: "Calibri" }),
+              new TextRun({ text: r.title, size: 22, color: MUTED, font: "Calibri" }),
             ],
           }),
           new Paragraph({
