@@ -13,8 +13,8 @@ export const heroContent = {
     "I specialize in building cross-platform mobile apps with **Flutter** and **React Native**, and crafting robust backend APIs with **Node.js** and **Django**.",
   heroStats: [
     { number: "20+", label: "Projects" },
-    { number: "4", label: "Years Experience" },
-    { number: "2", label: "Products" },
+    { number: "3+", label: "Years Experience" },
+    { number: "10+", label: "Live apps" },
   ],
   socialHeading: "Connect With Me",
 };
@@ -27,7 +27,7 @@ export const aboutContent = {
     "A passionate software engineer building impactful products across platforms.",
   whoIAmTitle: "Who I Am",
   whoIAmParagraphs: [
-    "I'm a software engineer passionate about pushing the boundaries of what's possible with mobile and web technologies. With 5+ years of experience, I turn complex ideas into elegant, user-friendly applications.",
+    "I'm a software engineer passionate about pushing the boundaries of what's possible with mobile and web technologies. With 3+ years shipping web and mobile products, I turn complex ideas into elegant, user-friendly applications.",
     "I eagerly learn the latest advancements in technology and constantly grow alongside my work -- always building, always improving.",
   ],
   skillsHeading: "My Skills",
