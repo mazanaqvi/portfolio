@@ -4,9 +4,8 @@ export const heroContent = {
   lastName: "Humza",
   rolePrefix: "I'm a",
   roles: [
-    "Flutter Developer",
-    "Mobile App Engineer",
     "Full-Stack Developer",
+    "Mobile App Engineer",
     "Backend Architect",
     "React Native Developer",
   ],
@@ -14,8 +13,8 @@ export const heroContent = {
     "I specialize in building cross-platform mobile apps with **Flutter** and **React Native**, and crafting robust backend APIs with **Node.js** and **Django**.",
   heroStats: [
     { number: "20+", label: "Projects" },
-    { number: "5+", label: "Years Exp." },
-    { number: "2+", label: "Companies" },
+    { number: "4", label: "Years Experience" },
+    { number: "2", label: "Products" },
   ],
   socialHeading: "Connect With Me",
 };

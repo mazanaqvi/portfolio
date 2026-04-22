@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import SkillBar from "../components/About/SkillBar";
 import StatCard from "../components/About/StatCard";
 import Timeline from "../components/About/Timeline";
-import { skills, stats, education, career, RESUME_DOWNLOAD_LINK } from "../data/about";
+import { skills, stats, education, career } from "../data/about";
 import { aboutContent } from "../data/content";
+import { Link } from "react-router-dom";
 
 const AboutPage: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -35,12 +36,12 @@ const AboutPage: React.FC = () => {
             <p key={i}>{text}</p>
           ))}
           <div className="btn-con">
-            <a href={RESUME_DOWNLOAD_LINK} className="main-btn" download>
-              <span className="btn-text">Download Resume</span>
+            <Link to="/resume" className="main-btn">
+              <span className="btn-text">View Resume</span>
               <span className="btn-icon">
-                <i className="fas fa-download"></i>
+                <i className="fas fa-file-alt"></i>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="right-about anim-fade-up" style={{ animationDelay: "0.4s" }}>

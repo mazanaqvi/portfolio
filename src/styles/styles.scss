@@ -1789,6 +1789,179 @@ section {
   border-color: rgba(13, 148, 136, 0.2);
 }
 
+// ===== RESUME PAGE =====
+
+.resume-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+
+  .main-btn {
+    min-width: 170px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.resume-viewer {
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem 3rem;
+}
+
+.resume-paper {
+  background: #ffffff;
+  color: #2d2d2d;
+  max-width: 800px;
+  width: 100%;
+  padding: 3rem 3.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+
+  a {
+    color: #555;
+    text-decoration: underline;
+    &:hover { color: #111; }
+  }
+
+  strong { color: #2d2d2d; }
+  em { color: #555; }
+}
+
+.rv-name {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+}
+
+.rv-tagline {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 0.4rem;
+}
+
+.rv-contact {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+.rv-divider {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  margin: 0.4rem 0 0.8rem;
+
+  &--thick {
+    border-bottom: 2.5px solid #111;
+    margin: 0.6rem 0 1rem;
+  }
+}
+
+.rv-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 1.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.rv-body {
+  color: #2d2d2d;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.rv-skills p {
+  margin: 0.35rem 0;
+  color: #555;
+
+  strong {
+    color: #2d2d2d;
+  }
+}
+
+.rv-job {
+  margin-bottom: 1.2rem;
+}
+
+.rv-job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 0.1rem;
+
+  strong {
+    font-size: 1rem;
+  }
+}
+
+.rv-dates {
+  font-size: 0.88rem;
+  color: #555;
+}
+
+.rv-company {
+  font-size: 0.95rem;
+  color: #2d2d2d;
+  margin-bottom: 0.2rem;
+}
+
+.rv-company-desc {
+  font-size: 0.88rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.rv-bullets {
+  padding-left: 1.2rem;
+  li {
+    list-style: disc;
+    margin: 0.3rem 0;
+    color: #2d2d2d;
+    font-size: 0.93rem;
+  }
+}
+
+.rv-project {
+  margin-bottom: 1rem;
+
+  em { font-size: 0.9rem; }
+}
+
+.rv-link {
+  font-size: 0.85rem;
+  color: #555 !important;
+  word-break: break-all;
+}
+
+@media screen and (max-width: 600px) {
+  .resume-paper {
+    padding: 1.8rem 1.5rem;
+  }
+  .rv-name {
+    font-size: 1.8rem;
+  }
+  .rv-job-header {
+    flex-direction: column;
+  }
+  .resume-actions .main-btn {
+    min-width: 140px;
+    font-size: 0.85rem;
+  }
+}
+
 // ===== RESPONSIVE BREAKPOINTS =====
 
 // Large screens
