@@ -20,12 +20,14 @@ const ResumePage: React.FC = () => {
       </div>
 
       <div className="resume-actions anim-fade-up" style={{ animationDelay: "0.2s" }}>
+        {/* DEV: DOCX download button — uncomment to enable
         <button className="main-btn" onClick={() => downloadResume()}>
           <span className="btn-text">Download DOCX</span>
           <span className="btn-icon">
             <i className="fas fa-file-word"></i>
           </span>
         </button>
+        */}
         <a href={RESUME_DOWNLOAD_LINK} className="main-btn" download>
           <span className="btn-text">Download PDF</span>
           <span className="btn-icon">
@@ -37,7 +39,8 @@ const ResumePage: React.FC = () => {
       <div className="resume-viewer anim-fade-up" style={{ animationDelay: "0.3s" }}>
         <div className="resume-paper">
           <h1 className="rv-name">{r.name}</h1>
-          <p className="rv-tagline">{r.tagline}</p>
+          <p className="rv-tagline">{r.title}</p>
+          <p className="rv-tagline">{r.technologies}</p>
           <p className="rv-contact">
             {r.email} &middot; {r.phone} &middot;{" "}
             <a href={r.websiteUrl} target="_blank" rel="noreferrer">
@@ -117,6 +120,15 @@ const ResumePage: React.FC = () => {
               </p>
             </div>
           ))}
+          <hr className="rv-divider" style={{ marginTop: "1.5rem" }} />
+          <div style={{ textAlign: "center", marginTop: "1rem" }}>
+            <button
+              className="rv-download-btn"
+              onClick={() => downloadResume()}
+            >
+              <i className="fas fa-file-word"></i> Download as DOCX
+            </button>
+          </div>
         </div>
       </div>
     </section>

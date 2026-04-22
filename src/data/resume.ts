@@ -28,7 +28,8 @@ export interface ResumeEducation {
 
 export interface ResumeData {
   name: string;
-  tagline: string;
+  title: string;
+  technologies: string;
   email: string;
   phone: string;
   website: string;
@@ -43,7 +44,8 @@ export interface ResumeData {
 
 export const resumeData: ResumeData = {
   name: "Ali Humza",
-  tagline: "Full-Stack Engineer  ·  React · Flutter · React Native · Node.js",
+  title: "Full-Stack Engineer",
+  technologies: "React Native · Django · Flutter · NestJS",
   email: "alihumza.dev@gmail.com",
   phone: "+92 303 3999512",
   website: "alihumza.com",
