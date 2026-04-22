@@ -38,6 +38,12 @@ export const websiteProjects: PortfolioItem[] = [
     image: "/img/xrossapps.png",
     links: [{ type: "web", url: "https://www.xrossapps.com/" }],
   },
+  {
+    id: "crossresume",
+    title: "CrossResume",
+    image: "/img/crossresume.png",
+    links: [{ type: "web", url: "https://crossresume.web.app/" }],
+  },
 ];
 
 export const mobileProjects: PortfolioItem[] = [
