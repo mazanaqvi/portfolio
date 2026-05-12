@@ -158,6 +158,18 @@ export const mobileProjects: PortfolioItem[] = [
 
 export const liveApps: PortfolioItem[] = [
   {
+    id: "wallets-friend",
+    title: "Wallets Friend",
+    image: "/img/wallets-friend.png",
+    links: [
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.xrossapps.walletsfriend",
+      },
+      { type: "web", url: "https://walletsfriend.web.app/" },
+    ],
+  },
+  {
     id: "eclaim",
     title: "eClaim",
     image: "/img/port10.png",
