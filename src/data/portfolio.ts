@@ -5,11 +5,6 @@ export interface PortfolioItem {
   description?: string;
   techStack?: string[];
   links: PortfolioLink[];
-  /**
-   * Live Apps page lists any item that has **both** App Store and Play Store links.
-   * Set this to `true` to also show on Live Apps when you do not have both (e.g. iOS-only, Play + web).
-   */
-  includeOnLiveApps?: boolean;
 }
 
 export interface PortfolioLink {
@@ -18,19 +13,20 @@ export interface PortfolioLink {
   label?: string;
 }
 
-/** True if the item links to both App Store and Google Play. */
-export function hasBothStorefrontLinks(item: PortfolioItem): boolean {
-  const types = new Set(item.links.map((l) => l.type));
-  return types.has("appstore") && types.has("playstore");
-}
-
-/** Live Apps: both storefronts, or `includeOnLiveApps` (see `mobileProjects`). */
+/** Live Apps: any App Store, Play Store, or Android (APK) link. Web-only does not qualify. */
 export function appearsOnLiveApps(item: PortfolioItem): boolean {
-  if (item.includeOnLiveApps) return true;
-  return hasBothStorefrontLinks(item);
+  return item.links.some(
+    (l) => l.type === "appstore" || l.type === "playstore" || l.type === "android"
+  );
 }
 
 export const websiteProjects: PortfolioItem[] = [
+  {
+    id: "resumeassists",
+    title: "ResumeAssists",
+    image: "/img/resumeassists.png",
+    links: [{ type: "web", url: "https://resumeassists.com/" }],
+  },
   {
     id: "crm-website",
     title: "CRM Website",
@@ -69,7 +65,6 @@ export const mobileProjects: PortfolioItem[] = [
     id: "wallets-friend",
     title: "Wallets Friend",
     image: "/img/wallets-friend.png",
-    includeOnLiveApps: true,
     links: [
       {
         type: "playstore",
@@ -123,7 +118,6 @@ export const mobileProjects: PortfolioItem[] = [
     id: "hit-rewind",
     title: "Hit Rewind (iOS & Apple TV)",
     image: "/img/hitrewind.png",
-    includeOnLiveApps: true,
     links: [
       {
         type: "appstore",
@@ -150,7 +144,6 @@ export const mobileProjects: PortfolioItem[] = [
     id: "streetswag",
     title: "StreetSwag",
     image: "/img/port14.png",
-    includeOnLiveApps: true,
     links: [
       {
         type: "android",
@@ -220,5 +213,5 @@ export const mobileProjects: PortfolioItem[] = [
   },
 ];
 
-/** Derived from `mobileProjects`: both storefronts, or `includeOnLiveApps`. */
+/** Derived from `mobileProjects`: App Store, Play Store, or Android link (not web-only). */
 export const liveApps: PortfolioItem[] = mobileProjects.filter(appearsOnLiveApps);
