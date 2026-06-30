@@ -51,16 +51,25 @@ export const websiteProjects: PortfolioItem[] = [
     image: "/img/xrossapps.png",
     links: [{ type: "web", url: "https://www.xrossapps.com/" }],
   },
-  {
-    id: "crossresume",
-    title: "CrossResume",
-    image: "/img/crossresume.png",
-    links: [{ type: "web", url: "https://crossresume.web.app/" }],
-  },
 ];
 
 /** Canonical list for the Mobile Apps page. Live Apps is derived via `appearsOnLiveApps`. */
 export const mobileProjects: PortfolioItem[] = [
+  {
+    id: "glory-global-driver",
+    title: "Glory Global Driver",
+    image: "/img/port15_gloryglobal.png",
+    links: [
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/pk/app/glory-global-driver/id6777124421",
+      },
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.gloryglobal.driver",
+      },
+    ],
+  },
   {
     id: "wallets-friend",
     title: "Wallets Friend",
@@ -134,21 +143,6 @@ export const mobileProjects: PortfolioItem[] = [
         type: "appstore",
         url: "https://apps.apple.com/pk/app/matchark/id1671819584",
       },
-      {
-        type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=com.linethree.android.matchark",
-      },
-    ],
-  },
-  {
-    id: "streetswag",
-    title: "StreetSwag",
-    image: "/img/port14.png",
-    links: [
-      {
-        type: "android",
-        url: "https://drive.google.com/uc?export=download&id=1SLO19cHaWPyBaDGTCAw8Tj570AWQ2HlA",
-      },
     ],
   },
   {
@@ -178,21 +172,6 @@ export const mobileProjects: PortfolioItem[] = [
       {
         type: "playstore",
         url: "https://play.google.com/store/apps/details?id=com.myblackmarkete.cypto_app",
-      },
-    ],
-  },
-  {
-    id: "wave-signals",
-    title: "Wave Get Signals",
-    image: "/img/port8.png",
-    links: [
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/pk/app/wave-get-signals/id1642561925",
-      },
-      {
-        type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=com.joinwave.waveinvest",
       },
     ],
   },

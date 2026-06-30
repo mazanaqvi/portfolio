@@ -63,8 +63,7 @@ All apps are built by **Ali Humza** and are live on the App Store and/or Google 
 
 | App | Platforms |
 |-----|-----------|
-| **Matchark** | [App Store](https://apps.apple.com/pk/app/matchark/id1671819584) &bull; [Google Play](https://play.google.com/store/apps/details?id=com.linethree.android.matchark) |
-| **Wave Get Signals** | [App Store](https://apps.apple.com/pk/app/wave-get-signals/id1642561925) &bull; [Google Play](https://play.google.com/store/apps/details?id=com.joinwave.waveinvest) |
+| **Matchark** | [App Store](https://apps.apple.com/pk/app/matchark/id1671819584) |
 | **Moshaf (Kuwait Quran)** | [App Store](https://apps.apple.com/us/app/kuwait-quran/id1661634739) &bull; [Google Play](https://play.google.com/store/apps/details?id=kw.gov.qsa.quranapp) |
 | **My Black Market** | [App Store](https://apps.apple.com/pk/app/my-black-market/id6446054554) &bull; [Google Play](https://play.google.com/store/apps/details?id=com.myblackmarkete.cypto_app) |
 | **Mashrab e Naab** | [App Store](https://apps.apple.com/pk/app/mashrab-e-naab/id6443939739) &bull; [Google Play](https://play.google.com/store/apps/details?id=com.azaan.mashrabenaab) |

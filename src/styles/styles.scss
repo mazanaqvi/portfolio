@@ -983,7 +983,7 @@ section {
     position: relative;
     border-radius: 15px;
     width: 100%;
-    height: 300px;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
 
     .image {
@@ -991,11 +991,16 @@ section {
       height: 100%;
       overflow: hidden;
       border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-grey-5);
+      border: 1px solid rgba(148, 163, 184, 0.12);
 
       img {
         width: 100%;
-        height: 300px;
-        object-fit: cover;
+        height: 100%;
+        object-fit: contain;
         object-position: center;
         border-radius: 15px;
       }
@@ -1073,6 +1078,11 @@ section {
       i { color: var(--color-secondary); }
     }
   }
+}
+
+.light-mode .portfolios .portfolio-item .image {
+  background: var(--color-grey0);
+  border-color: rgba(13, 148, 136, 0.12);
 }
 
 .tech-tags {
@@ -2470,8 +2480,7 @@ body.native-app {
     i { font-size: 1rem; }
   }
 
-  .portfolio-item { height: 220px !important; }
-  .portfolio-item .image img { height: 220px; }
+  .portfolio-item { aspect-ratio: 16 / 10; }
 
   .contact-card {
     padding: 1rem;
