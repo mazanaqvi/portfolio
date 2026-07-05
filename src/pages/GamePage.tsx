@@ -50,32 +50,40 @@ const GamePage: React.FC = () => {
     let startX = 0;
     let startY = 0;
     let tracking = false;
+    let fired = false;
 
     const onStart = (e: TouchEvent) => {
       const t = e.touches[0];
       startX = t.clientX;
       startY = t.clientY;
       tracking = true;
+      fired = false;
     };
 
     const onMove = (e: TouchEvent) => {
-      if (tracking && e.cancelable) e.preventDefault();
-    };
-
-    const onEnd = (e: TouchEvent) => {
       if (!tracking) return;
-      tracking = false;
-      const t = e.changedTouches[0];
+      if (e.cancelable) e.preventDefault();
+      if (fired) return;
+
+      const t = e.touches[0];
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
 
+      // Fire as soon as the swipe crosses the threshold for an instant,
+      // native-feeling response (rather than waiting for the finger to lift).
       if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) return;
 
+      fired = true;
       if (Math.abs(dx) > Math.abs(dy)) {
         moveRef.current(dx > 0 ? "right" : "left");
       } else {
         moveRef.current(dy > 0 ? "down" : "up");
       }
+    };
+
+    const onEnd = () => {
+      tracking = false;
+      fired = false;
     };
 
     el.addEventListener("touchstart", onStart, { passive: false });
