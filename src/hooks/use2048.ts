@@ -105,13 +105,22 @@ const readBestScore = (): number => {
   return Number.isFinite(stored) ? stored : 0;
 };
 
+interface Snapshot {
+  board: Board;
+  score: number;
+  won: boolean;
+  over: boolean;
+}
+
 export interface Use2048Result {
   board: Board;
   score: number;
   bestScore: number;
   won: boolean;
   over: boolean;
+  canUndo: boolean;
   move: (dir: Direction) => void;
+  undo: () => void;
   reset: () => void;
 }
 
@@ -121,6 +130,8 @@ export const use2048 = (): Use2048Result => {
   const [bestScore, setBestScore] = useState<number>(readBestScore);
   const [won, setWon] = useState(false);
   const [over, setOver] = useState(false);
+  // Single-step undo: holds the state captured before the last move.
+  const [prev, setPrev] = useState<Snapshot | null>(null);
 
   const move = useCallback(
     (dir: Direction) => {
@@ -132,6 +143,7 @@ export const use2048 = (): Use2048Result => {
       const next = spawnTile(moved);
       const newScore = score + gained;
 
+      setPrev({ board, score, won, over });
       setBoard(next);
       setScore(newScore);
       if (newScore > bestScore) {
@@ -144,12 +156,32 @@ export const use2048 = (): Use2048Result => {
     [board, score, bestScore, over, won]
   );
 
+  const undo = useCallback(() => {
+    if (!prev) return;
+    setBoard(prev.board);
+    setScore(prev.score);
+    setWon(prev.won);
+    setOver(prev.over);
+    setPrev(null);
+  }, [prev]);
+
   const reset = useCallback(() => {
     setBoard(createInitialBoard());
     setScore(0);
     setWon(false);
     setOver(false);
+    setPrev(null);
   }, []);
 
-  return { board, score, bestScore, won, over, move, reset };
+  return {
+    board,
+    score,
+    bestScore,
+    won,
+    over,
+    canUndo: prev !== null,
+    move,
+    undo,
+    reset,
+  };
 };

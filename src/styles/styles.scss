@@ -2610,6 +2610,30 @@ body.native-app {
   &.primary {
     color: #fff;
   }
+
+  &.ghost {
+    color: var(--color-white);
+    background: var(--color-grey-4);
+
+    &:hover {
+      filter: none;
+      background: var(--color-grey-5);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: none;
+  }
+}
+
+.game-2048-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .game-2048-board {

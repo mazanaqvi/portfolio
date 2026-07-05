@@ -5,7 +5,8 @@ const SWIPE_THRESHOLD = 24;
 
 const GamePage: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { board, score, bestScore, won, over, move, reset } = use2048();
+  const { board, score, bestScore, won, over, canUndo, move, undo, reset } =
+    use2048();
   const [dismissedWin, setDismissedWin] = useState(false);
   const boardRef = useRef<HTMLDivElement>(null);
   const moveRef = useRef(move);
@@ -130,9 +131,19 @@ const GamePage: React.FC = () => {
               <span className="game-2048-score-value">{bestScore}</span>
             </div>
           </div>
-          <button className="game-2048-new-btn" onClick={handleNewGame}>
-            <i className="fas fa-redo"></i> New Game
-          </button>
+          <div className="game-2048-actions">
+            <button
+              className="game-2048-new-btn ghost"
+              onClick={undo}
+              disabled={!canUndo}
+              title="Undo last move"
+            >
+              <i className="fas fa-undo"></i> Undo
+            </button>
+            <button className="game-2048-new-btn" onClick={handleNewGame}>
+              <i className="fas fa-redo"></i> New Game
+            </button>
+          </div>
         </div>
 
         <div className="game-2048-board" ref={boardRef}>
