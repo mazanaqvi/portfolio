@@ -232,7 +232,7 @@ section {
 
 .theme-btn {
   top: 5%;
-  right: 3%;
+  left: 3%;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -2206,7 +2206,7 @@ section {
     width: 50px;
     height: 50px;
     top: 3%;
-    right: 3%;
+    left: 3%;
     i { font-size: 1.1rem; }
   }
 
@@ -2413,7 +2413,7 @@ body.native-app {
 .native-app {
   .theme-btn {
     top: calc(env(safe-area-inset-top) + 12px);
-    right: calc(env(safe-area-inset-right) + 12px);
+    left: calc(env(safe-area-inset-left) + 12px);
   }
 
   .controls {
