@@ -134,20 +134,23 @@ const GamePage: React.FC = () => {
               <span className="game-2048-score-label">Score</span>
               <span className="game-2048-score-value">{score}</span>
             </div>
-            <div className="game-2048-score-box">
-              <span className="game-2048-score-label">Best</span>
+            <div className="game-2048-score-box best">
+              <span className="game-2048-score-label">
+                <i className="fas fa-crown"></i> Best
+              </span>
               <span className="game-2048-score-value">{bestScore}</span>
             </div>
           </div>
           <div className="game-2048-actions">
-            <button
-              className="game-2048-new-btn ghost"
-              onClick={undo}
-              disabled={!canUndo}
-              title="Undo last move"
-            >
-              <i className="fas fa-undo"></i> Undo
-            </button>
+            {canUndo && !over && (
+              <button
+                className="game-2048-new-btn ghost"
+                onClick={undo}
+                title="Undo last move"
+              >
+                <i className="fas fa-undo"></i> Undo
+              </button>
+            )}
             <button className="game-2048-new-btn" onClick={handleNewGame}>
               <i className="fas fa-redo"></i> New Game
             </button>
@@ -168,6 +171,17 @@ const GamePage: React.FC = () => {
           {(over || showWinOverlay) && (
             <div className="game-2048-overlay">
               <div className="game-2048-overlay-content">
+                {over ? (
+                  <img
+                    src="/img/bored.gif"
+                    alt="Game over"
+                    className="game-2048-sad-img"
+                  />
+                ) : (
+                  <div className="game-2048-emoji happy" aria-hidden="true">
+                    🎉
+                  </div>
+                )}
                 <h3>{over ? "Game Over" : "You Win!"}</h3>
                 <p>
                   {over
