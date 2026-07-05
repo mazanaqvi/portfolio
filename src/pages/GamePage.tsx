@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { use2048, type Direction } from "../hooks/use2048";
 
-const SWIPE_THRESHOLD = 30;
+const SWIPE_THRESHOLD = 24;
 
 const GamePage: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const { board, score, bestScore, won, over, move, reset } = use2048();
   const [dismissedWin, setDismissedWin] = useState(false);
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const boardRef = useRef<HTMLDivElement>(null);
+  const moveRef = useRef(move);
+
+  useEffect(() => {
+    moveRef.current = move;
+  }, [move]);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100);
@@ -37,26 +42,53 @@ const GamePage: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKey);
   }, [move]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    const t = e.touches[0];
-    touchStart.current = { x: t.clientX, y: t.clientY };
-  };
+  useEffect(() => {
+    const el = boardRef.current;
+    if (!el) return;
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStart.current) return;
-    const t = e.changedTouches[0];
-    const dx = t.clientX - touchStart.current.x;
-    const dy = t.clientY - touchStart.current.y;
-    touchStart.current = null;
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
 
-    if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) return;
+    const onStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      tracking = true;
+    };
 
-    if (Math.abs(dx) > Math.abs(dy)) {
-      move(dx > 0 ? "right" : "left");
-    } else {
-      move(dy > 0 ? "down" : "up");
-    }
-  };
+    const onMove = (e: TouchEvent) => {
+      if (tracking && e.cancelable) e.preventDefault();
+    };
+
+    const onEnd = (e: TouchEvent) => {
+      if (!tracking) return;
+      tracking = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) return;
+
+      if (Math.abs(dx) > Math.abs(dy)) {
+        moveRef.current(dx > 0 ? "right" : "left");
+      } else {
+        moveRef.current(dy > 0 ? "down" : "up");
+      }
+    };
+
+    el.addEventListener("touchstart", onStart, { passive: false });
+    el.addEventListener("touchmove", onMove, { passive: false });
+    el.addEventListener("touchend", onEnd);
+    el.addEventListener("touchcancel", onEnd);
+
+    return () => {
+      el.removeEventListener("touchstart", onStart);
+      el.removeEventListener("touchmove", onMove);
+      el.removeEventListener("touchend", onEnd);
+      el.removeEventListener("touchcancel", onEnd);
+    };
+  }, []);
 
   const handleNewGame = () => {
     setDismissedWin(false);
@@ -103,11 +135,7 @@ const GamePage: React.FC = () => {
           </button>
         </div>
 
-        <div
-          className="game-2048-board"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
+        <div className="game-2048-board" ref={boardRef}>
           {board.map((row, r) =>
             row.map((value, c) => (
               <div key={`${r}-${c}`} className="game-2048-cell">
