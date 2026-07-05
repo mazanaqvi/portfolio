@@ -58,6 +58,14 @@ export const liveAppsContent = {
     "Applications published on the iOS App Store and Google Play Store — built by Ali Humza.",
 };
 
+export const productsContent = {
+  pageTag: "Products",
+  pageTitle: "My",
+  pageTitleHighlight: "Products",
+  pageSubtitle:
+    "Flagship products I've built and continue to grow — from personal finance to career tools.",
+};
+
 export const contactContent = {
   pageTag: "Contact",
   pageTitle: "Get In",

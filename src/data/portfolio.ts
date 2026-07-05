@@ -194,3 +194,31 @@ export const mobileProjects: PortfolioItem[] = [
 
 /** Derived from `mobileProjects`: App Store, Play Store, or Android link (not web-only). */
 export const liveApps: PortfolioItem[] = mobileProjects.filter(appearsOnLiveApps);
+
+/** Flagship products built and maintained by Ali Humza. */
+export const products: PortfolioItem[] = [
+  {
+    id: "wallets-friend",
+    title: "Wallets Friend",
+    image: "/img/wallets-friend.png",
+    description:
+      "A personal finance companion to track expenses, budgets, and wallets with a clean, intuitive experience.",
+    techStack: ["Flutter", "Firebase"],
+    links: [
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.xrossapps.walletsfriend",
+      },
+      { type: "web", url: "https://walletsfriend.web.app/" },
+    ],
+  },
+  {
+    id: "resumeassists",
+    title: "ResumeAssists",
+    image: "/img/resumeassists.png",
+    description:
+      "A web platform that helps users build polished, professional resumes quickly with smart templates.",
+    techStack: ["React", "Node.js"],
+    links: [{ type: "web", url: "https://resumeassists.com/" }],
+  },
+];

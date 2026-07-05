@@ -25,6 +25,16 @@
   --gradient-secondary: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
   --gradient-accent: linear-gradient(135deg, #93c5fd 0%, #60a5fa 50%, #3b82f6 100%);
   --blob-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
+
+  // Liquid glass tokens (dark)
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-bg-strong: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-highlight: rgba(255, 255, 255, 0.22);
+  --glass-cell: rgba(255, 255, 255, 0.05);
+  --glass-blur: 16px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+  --glass-radius: 20px;
 }
 
 // Light theme: Clean white + Blue accent
@@ -45,6 +55,16 @@
   --gradient-secondary: linear-gradient(135deg, #93c5fd 0%, #3b82f6 50%, #2563eb 100%);
   --gradient-accent: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 50%, #3b82f6 100%);
   --blob-shadow: 0 20px 60px rgba(37, 99, 235, 0.1);
+
+  // Liquid glass tokens (light)
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(37, 99, 235, 0.22);
+  --glass-highlight: rgba(255, 255, 255, 0.95);
+  --glass-cell: rgba(37, 99, 235, 0.12);
+  --glass-blur: 16px;
+  --glass-shadow: 0 10px 34px rgba(37, 99, 235, 0.2);
+  --glass-radius: 20px;
 }
 
 body {
@@ -67,11 +87,11 @@ body::before {
   height: 60%;
   background: var(--gradient-accent);
   border-radius: 50% 60% 40% 70%;
-  opacity: 0.15;
+  opacity: 0.35;
   z-index: 1;
   animation: blob1 20s ease-in-out infinite;
   pointer-events: none;
-  filter: blur(60px);
+  filter: blur(70px);
 }
 
 body::after {
@@ -83,21 +103,21 @@ body::after {
   height: 50%;
   background: var(--gradient-secondary);
   border-radius: 60% 40% 50% 80%;
-  opacity: 0.1;
+  opacity: 0.28;
   z-index: 1;
   animation: blob2 25s ease-in-out infinite;
   pointer-events: none;
-  filter: blur(60px);
+  filter: blur(70px);
 }
 
 .light-mode body::before,
 body.light-mode::before {
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 .light-mode body::after,
 body.light-mode::after {
-  opacity: 0.15;
+  opacity: 0.32;
 }
 
 @keyframes blob1 {
@@ -2206,19 +2226,37 @@ section {
     top: auto;
     bottom: 0;
     flex-direction: row;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: safe center;
+    gap: 0.3rem;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    background-color: var(--color-grey-5);
-    padding: 0.3rem 0;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 20px 20px 0 0;
+    width: fit-content;
+    max-width: calc(100vw - 0.6rem);
+    background: var(--glass-bg-strong);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    border: 1px solid var(--glass-border);
+    border-bottom: none;
+    padding: 0.4rem 0.5rem;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.14);
+    border-radius: 16px 16px 0 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .control {
-      margin: 0.6rem 0.3rem;
-      width: 48px;
-      height: 48px;
+      flex: 0 0 auto;
+      margin: 0;
+      width: 38px;
+      height: 38px;
+      box-shadow: none;
+      i { font-size: 0.9rem; }
     }
   }
 
@@ -2458,10 +2496,10 @@ body.native-app {
   .page-subtitle { font-size: 0.85rem; }
 
   .controls .control {
-    width: 42px;
-    height: 42px;
-    margin: 0.4rem 0.2rem;
-    i { font-size: 1rem; }
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    i { font-size: 0.85rem; }
   }
 
   .about-container .left-about h4 { font-size: 1.3rem; }
@@ -2502,7 +2540,7 @@ body.native-app {
 /* Keep the board clear of the fixed bottom nav bar on mobile */
 @media screen and (max-width: 600px) {
   .game-2048 {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 110px) !important;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 90px) !important;
   }
 
   .game-2048-inner {
@@ -2695,3 +2733,105 @@ body.native-app {
 
 .light-mode .game-2048-tile.tile-2  { background: #94a3b8; color: #0f1722; }
 .light-mode .game-2048-tile.tile-4  { background: #64748b; color: #f8fafc; }
+
+/* ============================= */
+/* Liquid Glass Theme            */
+/* ============================= */
+
+// Frosted panels / cards
+.contact-card,
+.light-mode .contact-card,
+.review-card,
+.light-mode .review-card,
+.reviews-summary-banner,
+.light-mode .reviews-summary-banner,
+.hero-stats,
+.light-mode .hero-stats,
+.page-tag,
+.light-mode .page-tag,
+.about-container .right-about .about-item {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+}
+
+.about-container .right-about .about-item {
+  border-radius: 16px;
+}
+
+// Hover keeps the glassy look (a touch stronger)
+.contact-card:hover,
+.light-mode .contact-card:hover,
+.review-card:hover,
+.light-mode .review-card:hover,
+.about-container .right-about .about-item:hover {
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-highlight);
+}
+
+// Circular nav buttons + theme toggle (leave the active nav button highlighted)
+.controls .control:not(.active-btn),
+.light-mode .controls .control:not(.active-btn),
+.theme-btn,
+.light-mode .theme-btn {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+}
+
+// Small pills
+.social-link {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+// Glossy top edge on gradient buttons
+.main-btn,
+.game-2048-new-btn {
+  box-shadow: var(--box-shadow-1), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+// 2048 game surfaces
+.game-2048-board {
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+}
+
+.game-2048-score-box {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+.game-2048-cell {
+  background: var(--glass-cell);
+  border: 1px solid var(--glass-border);
+}
+
+.game-2048-overlay {
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+}
+
+// Light mode: give the board/cells a blue-tinted frost so the grid reads clearly
+.light-mode .game-2048-board {
+  background: rgba(219, 234, 254, 0.55);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.light-mode .game-2048-cell {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.14);
+}

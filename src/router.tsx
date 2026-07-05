@@ -9,6 +9,7 @@ import ContactPage from "./pages/ContactPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import ResumePage from "./pages/ResumePage";
 import GamePage from "./pages/GamePage";
+import ProductsPage from "./pages/ProductsPage";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "mobile",
         element: <MobileAppsPage />,
+      },
+      {
+        path: "products",
+        element: <ProductsPage />,
       },
       {
         path: "live-apps",
