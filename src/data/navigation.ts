@@ -13,4 +13,5 @@ export const navItems: NavItem[] = [
   { id: "reviews", path: "/reviews", icon: "fas fa-star", label: "Reviews" },
   { id: "contact", path: "/contact", icon: "fas fa-envelope-open", label: "Contact" },
   { id: "resume", path: "/resume", icon: "fas fa-file-alt", label: "Resume" },
+  { id: "game", path: "/game", icon: "fas fa-gamepad", label: "Play 2048" },
 ];

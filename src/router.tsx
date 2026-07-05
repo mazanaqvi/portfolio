@@ -8,6 +8,7 @@ import LiveAppsPage from "./pages/LiveAppsPage";
 import ContactPage from "./pages/ContactPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import ResumePage from "./pages/ResumePage";
+import GamePage from "./pages/GamePage";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "resume",
         element: <ResumePage />,
+      },
+      {
+        path: "game",
+        element: <GamePage />,
       },
       {
         path: "*",
