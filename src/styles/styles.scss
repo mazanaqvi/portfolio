@@ -3227,6 +3227,7 @@ body.native-app {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  min-width: 0;
 }
 
 .pay-field-label {
@@ -3246,9 +3247,12 @@ body.native-app {
   border-radius: 12px;
   background: var(--glass-cell);
   border: 1px solid var(--glass-border);
+  min-width: 0;
 }
 
 .pay-field-value {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: 1.12rem;
   font-weight: 700;
   color: var(--color-white);
@@ -3267,34 +3271,29 @@ body.native-app {
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 0.9rem;
-  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 55%, #000);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--brand, #3b82f6) 16%, transparent);
-  color: var(--brand, var(--color-secondary));
+  background: var(--brand, var(--color-secondary));
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
   transition: all 0.25s ease;
 
   i { font-size: 0.85rem; }
 
   &:hover {
-    background: var(--brand, var(--color-secondary));
+    background: color-mix(in srgb, var(--brand, #3b82f6) 82%, #000);
     color: #ffffff;
-    border-color: transparent;
     transform: translateY(-1px);
   }
 
   &.copied {
-    background: var(--brand, var(--color-secondary));
-    border-color: transparent;
+    background: color-mix(in srgb, var(--brand, #3b82f6) 82%, #000);
     color: #ffffff;
   }
-}
-
-.light-mode .pay-copy-btn:not(:hover):not(.copied) {
-  color: color-mix(in srgb, var(--brand, #3b82f6) 78%, #000);
 }
 
 // Wallet cards
@@ -3394,17 +3393,37 @@ body.native-app {
 @media screen and (max-width: 600px) {
   .pay-toggle {
     width: 100%;
-    flex-direction: column;
+    gap: 0.3rem;
   }
 
-  .pay-toggle-btn { justify-content: center; }
+  .pay-toggle-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.82rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+
+    i { flex-shrink: 0; }
+  }
 
   .pay-field-value-row {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 0.55rem 0.7rem;
   }
 
-  .pay-copy-btn { align-self: stretch; justify-content: center; }
+  .pay-field-value { font-size: 1.02rem; }
+
+  .pay-copy-btn {
+    padding: 0.42rem 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .pay-copy-text { display: none; }
+
+  .pay-card,
+  .pay-wallet-card { padding: 1.2rem 1rem; }
 
   .pay-wallet-card .pay-copy-btn { align-self: center; }
 }
