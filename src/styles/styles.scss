@@ -2991,3 +2991,420 @@ body.native-app {
   background: rgba(37, 99, 235, 0.1);
   border-color: rgba(37, 99, 235, 0.14);
 }
+
+/* ============================= */
+/* Payment Method Pages          */
+/* ============================= */
+
+.pay-page {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+
+  .page-header { margin-bottom: 1.6rem; }
+}
+
+// Contact info bar (phone + email)
+.pay-contact-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.9rem;
+
+  i { color: var(--color-secondary); font-size: 1rem; }
+}
+
+.pay-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0 auto 1.6rem;
+}
+
+.pay-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  transition: all 0.25s ease;
+
+  i { color: var(--color-secondary); font-size: 0.9rem; }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    color: var(--color-secondary);
+  }
+}
+
+// Local / International toggle
+.pay-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  margin: 0 auto 2rem;
+  border-radius: 50px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  width: fit-content;
+}
+
+.pay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-grey-1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  i { font-size: 0.85rem; }
+
+  &:hover { color: var(--color-white); }
+
+  &.active {
+    background: var(--gradient-secondary);
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
+  }
+}
+
+// Section subheading within payment pages
+.pay-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0.4rem 0 1rem;
+
+  i { color: var(--color-secondary); font-size: 1.05rem; }
+}
+
+// Bank / account cards
+.pay-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.pay-grid-wide {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
+
+// Two-column field layout (used for the wider international card)
+.pay-grid-wide .pay-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+}
+
+.pay-card {
+  position: relative;
+  background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--brand, #3b82f6) 40%, transparent),
+      color-mix(in srgb, var(--brand, #3b82f6) 22%, transparent)
+    ),
+    var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 50%, transparent);
+  border-top: 4px solid var(--brand, #3b82f6);
+  border-radius: var(--glass-radius);
+  padding: 1.4rem;
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand, var(--color-accent));
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--brand, #3b82f6) 30%, transparent);
+  }
+}
+
+// HBL (preferred) spans the full width on top
+.pay-card-preferred {
+  grid-column: 1 / -1;
+}
+
+.pay-preferred-badge {
+  position: absolute;
+  top: -13px;
+  right: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--brand, var(--color-secondary));
+  color: #ffffff;
+  padding: 0.3rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--brand, #3b82f6) 55%, transparent);
+
+  i { font-size: 0.68rem; }
+}
+
+.pay-card-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pay-logo-wrap {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--brand, #000) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 20%, transparent);
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.pay-card-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+.pay-card-note {
+  font-size: 0.85rem;
+  color: var(--color-grey-1);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--brand, #3b82f6) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 22%, transparent);
+}
+
+.pay-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pay-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pay-field-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-grey-1);
+}
+
+.pay-field-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 12px;
+  background: var(--glass-cell);
+  border: 1px solid var(--glass-border);
+}
+
+.pay-field-value {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--color-white);
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  letter-spacing: 0.5px;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.pay-copy-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 45%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--brand, #3b82f6) 16%, transparent);
+  color: var(--brand, var(--color-secondary));
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  i { font-size: 0.85rem; }
+
+  &:hover {
+    background: var(--brand, var(--color-secondary));
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-1px);
+  }
+
+  &.copied {
+    background: var(--brand, var(--color-secondary));
+    border-color: transparent;
+    color: #ffffff;
+  }
+}
+
+.light-mode .pay-copy-btn:not(:hover):not(.copied) {
+  color: color-mix(in srgb, var(--brand, #3b82f6) 78%, #000);
+}
+
+// Wallet cards
+.pay-wallets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.pay-wallet-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--glass-radius);
+  background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--brand, #3b82f6) 40%, transparent),
+      color-mix(in srgb, var(--brand, #3b82f6) 22%, transparent)
+    ),
+    var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 45%, transparent);
+  border-left: 4px solid var(--brand, #3b82f6);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand, var(--color-accent));
+    box-shadow: 0 14px 34px color-mix(in srgb, var(--brand, #3b82f6) 28%, transparent);
+  }
+
+  .pay-copy-btn { align-self: center; }
+}
+
+.pay-wallet-logo {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--brand, #000) 22%, transparent);
+
+  img { max-width: 100%; max-height: 100%; object-fit: contain; }
+}
+
+.pay-wallet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.pay-wallet-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pay-wallet-holder {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-grey-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pay-wallet-number {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--color-white);
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 720px) {
+  .pay-grid,
+  .pay-grid-wide,
+  .pay-grid-wide .pay-fields,
+  .pay-wallets-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .pay-toggle {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .pay-toggle-btn { justify-content: center; }
+
+  .pay-field-value-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pay-copy-btn { align-self: stretch; justify-content: center; }
+
+  .pay-wallet-card .pay-copy-btn { align-self: center; }
+}

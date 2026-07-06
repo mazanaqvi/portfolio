@@ -10,8 +10,25 @@ import ReviewsPage from "./pages/ReviewsPage";
 import ResumePage from "./pages/ResumePage";
 import GamePage from "./pages/GamePage";
 import ProductsPage from "./pages/ProductsPage";
+import PaymentLayout from "./components/Payment/PaymentLayout";
+import PaymentMethodPage from "./pages/PaymentMethodPage";
+import PaymentInternationalPage from "./pages/PaymentInternationalPage";
 
 export const router = createBrowserRouter([
+  {
+    path: "/payment-method",
+    element: <PaymentLayout />,
+    children: [
+      {
+        index: true,
+        element: <PaymentMethodPage />,
+      },
+      {
+        path: "international",
+        element: <PaymentInternationalPage />,
+      },
+    ],
+  },
   {
     path: "/",
     element: <Layout />,
