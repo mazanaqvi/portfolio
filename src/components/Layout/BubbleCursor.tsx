@@ -60,7 +60,6 @@ class Particle {
 }
 
 const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement, zIndex }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const cursorRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef<number | null>(null);
@@ -79,8 +78,10 @@ const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement, zIndex }) =
         return false;
       }
 
-      canvas = canvasRef.current;
-      if (!canvas) return;
+      // Create the canvas imperatively so it is never part of the React tree.
+      // (If React "owned" this node and we moved it to document.body, React
+      // would later fail to remove it, throwing a removeChild NotFoundError.)
+      canvas = document.createElement('canvas');
 
       context = canvas.getContext('2d');
       if (!context) return;
@@ -118,14 +119,14 @@ const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement, zIndex }) =
       width = window.innerWidth;
       height = window.innerHeight;
 
-      if (!canvasRef.current) return;
+      if (!canvas) return;
 
       if (wrapperElement) {
-        canvasRef.current.width = wrapperElement.clientWidth;
-        canvasRef.current.height = wrapperElement.clientHeight;
+        canvas.width = wrapperElement.clientWidth;
+        canvas.height = wrapperElement.clientHeight;
       } else {
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
+        canvas.width = width;
+        canvas.height = height;
       }
     };
 
@@ -202,7 +203,8 @@ const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement, zIndex }) =
     };
   }, [wrapperElement, zIndex]);
 
-  return <canvas ref={canvasRef} />;
+  // The canvas is created/attached imperatively above, so render nothing here.
+  return null;
 };
 
 export default BubbleCursor;
