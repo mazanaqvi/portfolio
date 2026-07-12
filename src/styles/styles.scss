@@ -706,32 +706,87 @@ section {
 }
 
 .hero-social-link {
+  --brand: var(--color-secondary);
+  --on-brand: #ffffff;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: var(--color-grey-5);
-  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  overflow: hidden;
   text-decoration: none;
-  color: var(--color-white);
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 14%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--brand) 45%, transparent);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--brand) 16%, transparent);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease,
+    color 0.3s ease;
 
-  i { font-size: 1.2rem; }
-  span { display: none; }
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  i {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
+    animation: socialFloat 3.4s ease-in-out infinite;
   }
 
-  &.linkedin:hover { background: #0077b5; border-color: #0077b5; }
-  &.github:hover { background: #333; border-color: #333; }
-  &.facebook:hover { background: #1877f2; border-color: #1877f2; }
-  &.twitter:hover { background: #1da1f2; border-color: #1da1f2; }
-  &.youtube:hover { background: #ff0000; border-color: #ff0000; }
-  &.stackoverflow:hover { background: #f48024; border-color: #f48024; }
+  span { display: none; }
+
+  // Shine sweep on hover
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 70%
+    );
+    transform: translateX(-130%);
+    transition: transform 0.6s ease;
+  }
+
+  &:hover {
+    transform: translateY(-7px) scale(1.08);
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--on-brand);
+    box-shadow: 0 16px 32px color-mix(in srgb, var(--brand) 55%, transparent);
+  }
+
+  &:hover::before {
+    transform: translateX(130%);
+  }
+
+  &.linkedin { --brand: #0a66c2; }
+  &.stackoverflow { --brand: #f48024; }
+  &.facebook { --brand: #1877f2; }
+  &.twitter { --brand: #1da1f2; }
+  &.youtube { --brand: #ff0000; }
+
+  // GitHub is monochrome: keep it readable on the dark hero.
+  &.github {
+    --brand: #e6edf3;
+    --on-brand: #0d1117;
+  }
+}
+
+// Staggered float so the icons don't bob in unison.
+.hero-social-icons .hero-social-link:nth-child(2) i { animation-delay: 0.4s; }
+.hero-social-icons .hero-social-link:nth-child(3) i { animation-delay: 0.8s; }
+.hero-social-icons .hero-social-link:nth-child(4) i { animation-delay: 1.2s; }
+
+.light-mode .hero-social-link.github {
+  --brand: #24292e;
+  --on-brand: #ffffff;
+}
+
+@keyframes socialFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 // ===== Page Header (shared across all pages) =====
@@ -2579,9 +2634,10 @@ section {
   .hero-social-icons { gap: 0.5rem; }
 
   .hero-social-link {
-    width: 36px;
-    height: 36px;
-    i { font-size: 1rem; }
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    i { font-size: 1.25rem; }
   }
 
   .main-btn { font-size: 0.9rem; }
