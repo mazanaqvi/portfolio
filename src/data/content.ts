@@ -12,7 +12,7 @@ export const heroContent = {
   description:
     "I specialize in building cross-platform mobile apps with **Flutter** and **React Native**, and crafting robust backend APIs with **Node.js** and **Django**.",
   heroStats: [
-    { number: "20+", label: "Projects" },
+    { number: "25+", label: "Projects" },
     { number: "3+", label: "Years Experience" },
     { number: "10+", label: "Live apps" },
   ],
