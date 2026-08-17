@@ -10,7 +10,7 @@ export const heroContent = {
     "React Native Developer",
   ],
   description:
-    "I specialize in building cross-platform mobile apps with **Flutter** and **React Native**, and crafting robust backend APIs with **Node.js** and **Django**.",
+    "I'm a full-stack developer building web apps with **Next.js**, cross-platform mobile apps with **Flutter** and **React Native**, and robust backend APIs with **NestJS**, **Node.js**, and **Django**.",
   heroStats: [
     { number: "25+", label: "Projects" },
     { number: "3+", label: "Years Experience" },

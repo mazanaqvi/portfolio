@@ -86,10 +86,11 @@ const HomePage: React.FC = () => {
             </div>
 
             <p className="hero-description anim-fade-up" style={{ animationDelay: "0.8s" }}>
-              I specialize in building cross-platform mobile apps with
+              I'm a full-stack developer building web apps with
+              <strong> Next.js, React JS</strong>, cross-platform mobile apps with
               <strong> Flutter</strong> and <strong>React Native</strong>,
-              and crafting robust backend APIs with
-              <strong> Node.js</strong> and <strong>Django</strong>.
+              and robust backend APIs with
+              <strong> NestJS</strong>, <strong>Node.js</strong>, and <strong>Django</strong>.
             </p>
 
             <div className="hero-stats anim-fade-up" style={{ animationDelay: "1s" }}>
