@@ -54,7 +54,7 @@ export const resumeData: ResumeData = {
   location: "Lahore, Pakistan",
 
   summary:
-    "Full-stack engineer with 3 years of shipping web and cross-platform mobile applications using React, Flutter, and React Native, backed by scalable Node.js, NestJS, and Django backends. Deployed 10+ live apps on Google Play and the App Store. Hands-on experience with LLM code generation model training, crypto trading automation, and healthcare app development.",
+    "Full-stack engineer with 4 years of shipping web and cross-platform mobile applications using React, Flutter, and React Native, backed by scalable Node.js, NestJS, and Django backends. Deployed 10+ live apps on Google Play and the App Store. Hands-on experience with LLM code generation model training, crypto trading automation, and healthcare app development.",
 
   skills: [
     {

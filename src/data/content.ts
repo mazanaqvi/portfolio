@@ -13,7 +13,7 @@ export const heroContent = {
     "I'm a full-stack developer building web apps with **Next.js**, cross-platform mobile apps with **Flutter** and **React Native**, and robust backend APIs with **NestJS**, **Node.js**, and **Django**.",
   heroStats: [
     { number: "25+", label: "Projects" },
-    { number: "3+", label: "Years Experience" },
+    { number: "4+", label: "Years Experience" },
     { number: "10+", label: "Live apps" },
   ],
   socialHeading: "Connect With Me",
@@ -27,7 +27,7 @@ export const aboutContent = {
     "A passionate software engineer building impactful products across platforms.",
   whoIAmTitle: "Who I Am",
   whoIAmParagraphs: [
-    "I'm a software engineer passionate about pushing the boundaries of what's possible with mobile and web technologies. With 3+ years shipping web and mobile products, I turn complex ideas into elegant, user-friendly applications.",
+    "I'm a software engineer passionate about pushing the boundaries of what's possible with mobile and web technologies. With 4+ years shipping web and mobile products, I turn complex ideas into elegant, user-friendly applications.",
     "I eagerly learn the latest advancements in technology and constantly grow alongside my work -- always building, always improving.",
   ],
   skillsHeading: "My Skills",

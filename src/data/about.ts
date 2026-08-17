@@ -35,10 +35,10 @@ export const skills: Skill[] = resumeData.skills.map((s, i) => ({
   cssClass: SKILL_BAR_CSS[i] ?? "html",
 }));
 
-/** Stats aligned with the resume summary (3 yrs experience, 10+ live apps, 20+ projects, six skill groups). */
+/** Stats aligned with the resume summary (4 yrs experience, 10+ live apps, 20+ projects, six skill groups). */
 export const stats: StatItem[] = [
   { value: "20+", label: "Projects\nCompleted" },
-  { value: "3", label: "Years of\nExperience" },
+  { value: "4+", label: "Years of\nExperience" },
   { value: "10+", label: "Live apps\nshipped" },
   { value: "6", label: "Core skill\nareas" },
 ];
