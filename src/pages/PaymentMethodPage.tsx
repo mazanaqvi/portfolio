@@ -15,6 +15,7 @@ const PaymentMethodPage: React.FC = () => {
         {banks.map((bank, i) => (
           <AccountCard
             key={bank.id}
+            id={bank.id}
             name={bank.name}
             logo={bank.logo}
             brand={bank.brand}

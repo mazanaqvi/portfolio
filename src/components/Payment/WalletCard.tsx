@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { copyToClipboard } from "../../utils/copyToClipboard";
 import type { Wallet } from "../../data/payments";
 
 interface WalletCardProps {
@@ -11,18 +12,7 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, index = 0 }) => {
 
   const handleCopy = useCallback(async () => {
     const value = wallet.number.replace(/\s+/g, "");
-    try {
-      await navigator.clipboard.writeText(value);
-    } catch {
-      const el = document.createElement("textarea");
-      el.value = value;
-      el.style.position = "fixed";
-      el.style.opacity = "0";
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-    }
+    await copyToClipboard(value);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);
   }, [wallet.number]);

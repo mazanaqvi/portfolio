@@ -40,6 +40,11 @@
   --navbar-bg: #0d1526;
   --navbar-border: rgba(255, 255, 255, 0.08);
   --navbar-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+
+  // Solid surfaces for payment pages (dark)
+  --pay-surface: #0c1322;
+  --pay-surface-2: #121b2d;
+  --pay-line: rgba(255, 255, 255, 0.09);
 }
 
 // Light theme: Clean white + Blue accent
@@ -75,6 +80,11 @@
   --navbar-bg: #ffffff;
   --navbar-border: rgba(37, 99, 235, 0.12);
   --navbar-shadow: 0 -8px 26px rgba(37, 99, 235, 0.16);
+
+  // Solid surfaces for payment pages (light)
+  --pay-surface: #ffffff;
+  --pay-surface-2: #f3f6fb;
+  --pay-line: rgba(15, 23, 42, 0.1);
 }
 
 body {
@@ -3298,19 +3308,19 @@ body.native-app {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-white);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.8rem;
 
-  i { color: var(--color-secondary); font-size: 1rem; }
+  i { color: var(--color-secondary); font-size: 0.95rem; }
 }
 
 .pay-contact {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.8rem;
+  gap: 0.6rem;
   margin: 0 auto 1.6rem;
 }
 
@@ -3318,23 +3328,19 @@ body.native-app {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.55rem 1.1rem;
-  border-radius: 50px;
-  font-size: 0.92rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-white);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
-  transition: all 0.25s ease;
+  background: var(--pay-surface);
+  border: 1px solid var(--pay-line);
+  transition: border-color 0.2s ease, color 0.2s ease;
 
-  i { color: var(--color-secondary); font-size: 0.9rem; }
+  i { color: var(--color-secondary); font-size: 0.85rem; }
 
   &:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-accent);
+    border-color: var(--color-secondary);
     color: var(--color-secondary);
   }
 }
@@ -3343,15 +3349,12 @@ body.native-app {
 .pay-toggle {
   display: flex;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.4rem;
+  gap: 0.25rem;
+  padding: 0.3rem;
   margin: 0 auto 2rem;
-  border-radius: 50px;
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  border-radius: 12px;
+  background: var(--pay-surface);
+  border: 1px solid var(--pay-line);
   width: fit-content;
 }
 
@@ -3359,13 +3362,13 @@ body.native-app {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.7rem 1.5rem;
-  border-radius: 50px;
+  padding: 0.6rem 1.3rem;
+  border-radius: 9px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-grey-1);
+  color: var(--color-grey-2);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease;
   white-space: nowrap;
 
   i { font-size: 0.85rem; }
@@ -3373,30 +3376,63 @@ body.native-app {
   &:hover { color: var(--color-white); }
 
   &.active {
-    background: var(--gradient-secondary);
+    background: var(--color-secondary);
     color: #ffffff;
-    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
   }
+}
+
+// Account title verification warning
+.pay-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 720px;
+  margin: -0.8rem auto 2rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.45);
+  color: #f87171;
+  font-size: 0.88rem;
+  line-height: 1.55;
+
+  i { margin-top: 0.2rem; font-size: 0.95rem; }
+
+  strong { font-weight: 700; }
+
+  a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+.light-mode .pay-wallet-logo img { filter: none; }
+
+.light-mode .pay-warning {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #b91c1c;
 }
 
 // Section subheading within payment pages
 .pay-section-heading {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  font-size: 1.2rem;
+  gap: 0.6rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-white);
-  margin: 0.4rem 0 1rem;
+  margin: 0.4rem 0 0.9rem;
 
-  i { color: var(--color-secondary); font-size: 1.05rem; }
+  i { color: var(--color-grey-2); font-size: 0.95rem; }
 }
 
 // Bank / account cards
 .pay-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -3409,122 +3445,140 @@ body.native-app {
 .pay-grid-wide .pay-fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem 1rem;
+  column-gap: 1.5rem;
 }
 
 .pay-card {
-  position: relative;
-  background: linear-gradient(
-      160deg,
-      color-mix(in srgb, var(--brand, #3b82f6) 40%, transparent),
-      color-mix(in srgb, var(--brand, #3b82f6) 22%, transparent)
-    ),
-    var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 50%, transparent);
-  border-top: 4px solid var(--brand, #3b82f6);
-  border-radius: var(--glass-radius);
-  padding: 1.4rem;
-  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: var(--brand, var(--color-accent));
-    box-shadow: 0 16px 40px color-mix(in srgb, var(--brand, #3b82f6) 30%, transparent);
-  }
+  overflow: hidden;
+  background: color-mix(in srgb, var(--brand, #3b82f6) 9%, var(--pay-surface));
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 45%, var(--pay-surface));
+  border-radius: 16px;
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--brand, #3b82f6) 18%, transparent);
 }
 
-// HBL (preferred) spans the full width on top
-.pay-card-preferred {
-  grid-column: 1 / -1;
-}
-
-.pay-preferred-badge {
-  position: absolute;
-  top: -13px;
-  right: 1.4rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--brand, var(--color-secondary));
-  color: #ffffff;
-  padding: 0.3rem 0.9rem;
-  border-radius: 50px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--brand, #3b82f6) 55%, transparent);
-
-  i { font-size: 0.68rem; }
-}
-
+// Solid brand-colour header band
 .pay-card-head {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    var(--brand, #3b82f6),
+    color-mix(in srgb, var(--brand, #3b82f6) 78%, #000)
+  );
+  color: #ffffff;
+}
+
+.pay-card-body {
+  padding: 0.35rem 1.25rem 0.9rem;
 }
 
 .pay-logo-wrap {
   flex-shrink: 0;
-  width: 72px;
-  height: 72px;
-  border-radius: 16px;
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  overflow: hidden;
   background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  box-shadow: 0 6px 16px color-mix(in srgb, var(--brand, #000) 25%, transparent);
-  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 20%, transparent);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
 
   img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
+.pay-logo-plain {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+// Payoneer: white behind the logo, then the colours of its ring
+.pay-card-payoneer {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 72, 0, 0.1),
+      rgba(200, 70, 220, 0.08)
+    ),
+    var(--pay-surface);
+  border-color: color-mix(in srgb, #ff4800 35%, var(--pay-surface));
+
+  .pay-card-head {
+    background: linear-gradient(
+      90deg,
+      #ffffff 0%,
+      #fff3ec 22%,
+      #ff4800 58%,
+      #c846dc 100%
+    );
+  }
+
+  .pay-card-name { color: #1d1d1f; }
+
+  .pay-copy-all-btn { color: #c846dc; }
+}
+
+.pay-card-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
 .pay-card-name {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: #ffffff;
   line-height: 1.3;
+}
+
+.pay-preferred-tag {
+  display: inline-flex;
+  padding: 0.15rem 0.55rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.22);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .pay-card-note {
   font-size: 0.85rem;
-  color: var(--color-grey-1);
+  color: var(--color-grey-2);
   line-height: 1.55;
-  margin-bottom: 1rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--brand, #3b82f6) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 22%, transparent);
+  margin: 0.9rem 0 0.25rem;
 }
 
 .pay-fields {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
 }
 
 .pay-field {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.15rem;
   min-width: 0;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 22%, var(--pay-line));
+
+  &:last-child { border-bottom: none; }
 }
 
+.pay-grid-wide .pay-field:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
 .pay-field-label {
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--color-grey-1);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-grey-2);
 }
 
 .pay-field-value-row {
@@ -3532,55 +3586,71 @@ body.native-app {
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 12px;
-  background: var(--glass-cell);
-  border: 1px solid var(--glass-border);
   min-width: 0;
 }
 
 .pay-field-value {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 1.12rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-white);
   white-space: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
   font-family: "SF Mono", "Menlo", "Consolas", monospace;
-  letter-spacing: 0.5px;
 
   &::-webkit-scrollbar { display: none; }
 }
 
-.pay-copy-btn {
+.pay-copy-btn,
+.pay-copy-all-btn {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.5rem 0.9rem;
-  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 55%, #000);
-  border-radius: 10px;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 80%, #000);
+  border-radius: 8px;
   background: var(--brand, var(--color-secondary));
   color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
-  transition: all 0.25s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 
-  i { font-size: 0.85rem; }
+  i { font-size: 0.8rem; }
 
   &:hover {
     background: color-mix(in srgb, var(--brand, #3b82f6) 82%, #000);
     color: #ffffff;
-    transform: translateY(-1px);
   }
 
   &.copied {
-    background: color-mix(in srgb, var(--brand, #3b82f6) 82%, #000);
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+  }
+}
+
+// White button on the brand header band
+.pay-copy-all-btn {
+  padding: 0.5rem 0.9rem;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--brand, var(--color-secondary));
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+
+  &:hover {
+    background: #ffffff;
+    color: var(--brand, var(--color-secondary));
+    filter: brightness(0.94);
+  }
+
+  &.copied {
+    background: #16a34a;
+    border-color: #16a34a;
     color: #ffffff;
   }
 }
@@ -3589,62 +3659,47 @@ body.native-app {
 .pay-wallets-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem;
+  gap: 1rem;
 }
 
 .pay-wallet-card {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.2rem;
-  border-radius: var(--glass-radius);
-  background: linear-gradient(
-      160deg,
-      color-mix(in srgb, var(--brand, #3b82f6) 40%, transparent),
-      color-mix(in srgb, var(--brand, #3b82f6) 22%, transparent)
-    ),
-    var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 45%, transparent);
-  border-left: 4px solid var(--brand, #3b82f6);
-  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    border-color: var(--brand, var(--color-accent));
-    box-shadow: 0 14px 34px color-mix(in srgb, var(--brand, #3b82f6) 28%, transparent);
-  }
-
-  .pay-copy-btn { align-self: center; }
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--brand, #3b82f6) 14%, var(--pay-surface));
+  border: 1px solid color-mix(in srgb, var(--brand, #3b82f6) 45%, var(--pay-surface));
+  border-left: 5px solid var(--brand, #3b82f6);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--brand, #3b82f6) 16%, transparent);
 }
 
 .pay-wallet-logo {
   flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  border-radius: 14px;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 9px;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--brand, #000) 22%, transparent);
-
-  img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  width: 64px;
+  height: 64px;
+  // Logos sit directly on the card, no tile behind them
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    // Thin light outline so dark wordmarks stay readable on the dark theme
+    filter: drop-shadow(0 0 0.6px rgba(255, 255, 255, 0.9))
+      drop-shadow(0 0 0.6px rgba(255, 255, 255, 0.9));
+  }
 }
 
 .pay-wallet-info {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
   flex: 1;
   min-width: 0;
 }
 
 .pay-wallet-name {
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--color-white);
   overflow: hidden;
@@ -3653,20 +3708,19 @@ body.native-app {
 }
 
 .pay-wallet-holder {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--color-grey-1);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-grey-2);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .pay-wallet-number {
-  font-size: 1.08rem;
-  font-weight: 700;
+  font-size: 0.98rem;
+  font-weight: 600;
   color: var(--color-white);
   font-family: "SF Mono", "Menlo", "Consolas", monospace;
-  letter-spacing: 0.5px;
   white-space: nowrap;
 }
 
@@ -3677,19 +3731,22 @@ body.native-app {
   .pay-wallets-grid {
     grid-template-columns: 1fr;
   }
+
+  .pay-grid-wide .pay-field:nth-last-child(2):nth-child(odd) {
+    border-bottom: 1px solid var(--pay-line);
+  }
 }
 
 @media screen and (max-width: 600px) {
   .pay-toggle {
     width: 100%;
-    gap: 0.3rem;
   }
 
   .pay-toggle-btn {
     flex: 1 1 0;
     min-width: 0;
     justify-content: center;
-    padding: 0.65rem 0.5rem;
+    padding: 0.6rem 0.5rem;
     font-size: 0.82rem;
     white-space: normal;
     text-align: center;
@@ -3698,21 +3755,17 @@ body.native-app {
     i { flex-shrink: 0; }
   }
 
-  .pay-field-value-row {
-    padding: 0.55rem 0.7rem;
-  }
-
-  .pay-field-value { font-size: 1.02rem; }
-
-  .pay-copy-btn {
-    padding: 0.42rem 0.7rem;
-    font-size: 0.78rem;
-  }
+  .pay-field-value { font-size: 0.95rem; }
 
   .pay-copy-text { display: none; }
 
-  .pay-card,
-  .pay-wallet-card { padding: 1.2rem 1rem; }
+  .pay-card-head { padding: 1rem; gap: 0.8rem; }
 
-  .pay-wallet-card .pay-copy-btn { align-self: center; }
+  .pay-card-body { padding: 0.25rem 1rem 0.8rem; }
+
+  .pay-copy-all-btn span { display: none; }
+
+  .pay-logo-wrap { width: 68px; height: 68px; }
+
+  .pay-wallet-logo { width: 56px; height: 56px; }
 }

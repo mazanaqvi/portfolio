@@ -66,6 +66,17 @@ const PaymentShell: React.FC<PaymentShellProps> = ({ subtitle, children }) => {
         </NavLink>
       </div>
 
+      <div className="pay-warning anim-fade-up" style={{ animationDelay: "0.18s" }} role="note">
+        <i className="fas fa-triangle-exclamation"></i>
+        <p>
+          Before sending, make sure your bank shows the account title as{" "}
+          <strong>Ahmad Ali Hamza</strong> or <strong>Ahmad Ali Hamza Naqvi</strong>.
+          If it shows any other name, do not send. Confirm with me on{" "}
+          <a href="tel:+923033999512">0303 3999512</a>. The only official page is{" "}
+          <strong>alihumza.com/payment-method</strong>.
+        </p>
+      </div>
+
       {children}
     </section>
   );

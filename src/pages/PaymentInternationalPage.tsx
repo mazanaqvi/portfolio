@@ -14,8 +14,10 @@ const PaymentInternationalPage: React.FC = () => {
         {internationalAccounts.map((account, i) => (
           <AccountCard
             key={account.id}
+            id={account.id}
             name={account.name}
             logo={account.logo}
+            logoFit={account.logoFit}
             brand={account.brand}
             fields={account.fields}
             note={account.note}

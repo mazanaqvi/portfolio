@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { copyToClipboard } from "../../utils/copyToClipboard";
 import type { PaymentField } from "../../data/payments";
 
 interface CopyFieldProps {
@@ -11,18 +12,7 @@ const CopyField: React.FC<CopyFieldProps> = ({ field }) => {
   const textToCopy = field.copyValue ?? field.value.replace(/\s+/g, "");
 
   const handleCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(textToCopy);
-    } catch {
-      const el = document.createElement("textarea");
-      el.value = textToCopy;
-      el.style.position = "fixed";
-      el.style.opacity = "0";
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-    }
+    await copyToClipboard(textToCopy);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);
   }, [textToCopy]);

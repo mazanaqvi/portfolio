@@ -42,7 +42,7 @@ export const banks: BankAccount[] = [
   {
     id: "ubl",
     name: "United Bank Limited",
-    logo: "/img/payment_methods/ubl.png",
+    logo: "/img/payment_methods/ubl.jpeg",
     brand: "#0171B8",
     fields: [
       { label: "Account Title", value: ACCOUNT_HOLDER, copyable: false },
@@ -51,32 +51,21 @@ export const banks: BankAccount[] = [
       { label: "Branch", value: "Niaz Beg, Lahore (0736)", copyable: false },
     ],
   },
-  {
-    id: "bop",
-    name: "Bank of Punjab",
-    logo: "/img/payment_methods/bop.jpeg",
-    brand: "#E5631E",
-    fields: [
-      { label: "Account Title", value: "Ahmad Ali Hamza Naqvi", copyable: false },
-      { label: "Account Number", value: "6280308580100014" },
-      { label: "IBAN", value: "PK53BPUN6280308580100014" },
-      { label: "Branch", value: "Raiwind Road, Lahore", copyable: false },
-      { label: "Branch Code", value: "277" },
-    ],
-  },
 ];
 
 export const wallets: Wallet[] = [
-  { id: "jazzcash", name: "JazzCash", logo: "/img/payment_methods/jazcash.webp", brand: "#E72225", number: "0303 3999512" },
-  { id: "easypaisa", name: "Easypaisa", logo: "/img/payment_methods/easypaisa.webp", brand: "#24AA5C", number: "0303 3999512" },
+  { id: "jazzcash", name: "JazzCash", logo: "/img/payment_methods/jazzcash.png", brand: "#E72225", number: "0303 3999512" },
+  { id: "easypaisa", name: "Easypaisa", logo: "/img/payment_methods/easypaisa.png", brand: "#24AA5C", number: "0303 3999512" },
   { id: "sadapay", name: "SadaPay", logo: "/img/payment_methods/sadapay.png", brand: "#F6765F", number: "0303 3999512" },
-  { id: "nayapay", name: "NayaPay", logo: "/img/payment_methods/nayapay.png", brand: "#F84C18", number: "0303 3999512" },
+  { id: "nayapay", name: "NayaPay", logo: "/img/payment_methods/nayapay.jpeg", brand: "#F84C18", number: "0303 3999512" },
 ];
 
 export interface InternationalAccount {
   id: string;
   name: string;
   logo: string;
+  /** "contain" shows a transparent logo as-is, with no white tile behind it. */
+  logoFit?: "cover" | "contain";
   brand: string;
   note: string;
   fields: PaymentField[];
@@ -87,6 +76,7 @@ export const internationalAccounts: InternationalAccount[] = [
     id: "payoneer",
     name: "Payoneer (Citibank)",
     logo: "/img/payment_methods/payoneer.png",
+    logoFit: "contain",
     brand: "#FF4800",
     note: "Receiving account via Payoneer — use Local (ACH) transfer within the USA.",
     fields: [
