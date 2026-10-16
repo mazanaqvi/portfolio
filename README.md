@@ -38,7 +38,7 @@ Sources and modes are declared in `scripts/project-images.json`. `cover` is for 
 npm run build:images
 ```
 
-The Open Graph card is `public/og.png` (1200 × 630), rebuilt from `public/img/preview.png` with `npm run build:og`.
+The Open Graph card is `public/og.jpg` (1200 × 630), rebuilt from `public/img/preview.png` with `npm run build:og`.
 
 ## Structure
 
