@@ -133,6 +133,10 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 2.5rem;
+
+  @media (max-width: 400px) {
+    .btn { flex: 1 1 0; }
+  }
 }
 
 .hero-stats {
@@ -615,7 +619,8 @@
 
   .mini-stats {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
     .ms { .v { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; } .l { font-size: 0.78rem; color: var(--text-3); } }
   }
 }
@@ -667,7 +672,8 @@
     gap: 0.75rem;
     padding-top: 1rem;
     border-top: 1px solid var(--line);
-    .project { font-size: 0.85rem; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .project { min-width: 0; flex: 1 1 auto; font-size: 0.85rem; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .chip { flex-shrink: 0; }
   }
 }
 
@@ -675,7 +681,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  @media (max-width: 720px) { grid-template-columns: 1fr; }
+  @media (max-width: 720px) { grid-template-columns: minmax(0, 1fr); }
+  > * { min-width: 0; }
   .review-card { width: auto; }
 }
 
@@ -715,7 +722,7 @@
   h2 { font-size: clamp(2rem, 5vw, 3.6rem); margin-bottom: 1rem; }
   p { color: var(--text-2); max-width: 46ch; margin-bottom: 1.75rem; }
 
-  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; @media (max-width: 480px) { .btn { flex: 1 1 100%; } } }
 
   .contact-list {
     display: grid;
@@ -748,6 +755,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
   @media (max-width: 720px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
 
   a {
     display: flex;
@@ -778,6 +786,7 @@
   }
 
   .about-side { display: grid; gap: 1rem; position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+  @media (max-width: 860px) { .about-side { position: static; } }
 
   .about-portrait {
     aspect-ratio: 4 / 5;
@@ -813,6 +822,7 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
+  @media (max-width: 480px) { .btn { flex: 1 1 calc(50% - 0.75rem); } }
 }
 
 .resume-paper {

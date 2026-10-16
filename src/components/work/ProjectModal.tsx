@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, X } from "lucide-react";
 import { PROJECT_IMAGE, projectImage, type Project } from "../../data/projects";
@@ -21,7 +22,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
     };
   }, [project, onClose]);
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {project && (
         <motion.div
@@ -104,7 +105,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 

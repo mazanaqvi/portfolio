@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
 import ToTop from "./ToTop";
 import Cursor from "./Cursor";
+import MobileTabBar from "./MobileTabBar";
 import { CommandPaletteProvider } from "./CommandPalette";
 
 const Layout: React.FC = () => {
@@ -33,6 +34,7 @@ const Layout: React.FC = () => {
       </AnimatePresence>
       <Footer />
       <ToTop />
+      <MobileTabBar />
     </CommandPaletteProvider>
   );
 };

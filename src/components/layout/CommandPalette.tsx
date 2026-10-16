@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import {
@@ -163,6 +164,7 @@ export const CommandPaletteProvider: React.FC<{ children: React.ReactNode }> = (
   return (
     <CommandPaletteContext.Provider value={{ open, close }}>
       {children}
+      {createPortal(
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -237,7 +239,9 @@ export const CommandPaletteProvider: React.FC<{ children: React.ReactNode }> = (
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </CommandPaletteContext.Provider>
   );
 };

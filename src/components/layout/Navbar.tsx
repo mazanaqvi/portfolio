@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
           >
-            {[{ label: "Home", path: "/" }, ...navItems, { label: "Play 2048", path: "/game" }].map((item, i) => (
+            {[{ label: "Home", path: "/" }, ...navItems, { label: "Play 2048", path: "/game" }, { label: "Payment methods", path: "/payment-method" }].map((item, i) => (
               <motion.div
                 key={item.path}
                 initial={{ opacity: 0, x: -16 }}

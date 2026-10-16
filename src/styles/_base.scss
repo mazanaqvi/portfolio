@@ -8,6 +8,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 1.5rem);
 }
@@ -167,6 +168,10 @@ p {
   justify-content: space-between;
   gap: 1rem 2rem;
   margin-bottom: clamp(1.75rem, 4vw, 3rem);
+
+  @media (max-width: 600px) {
+    > .btn { width: 100%; }
+  }
 
   .mono {
     display: inline-flex;
