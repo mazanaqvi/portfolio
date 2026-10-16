@@ -258,16 +258,29 @@
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-card {
-    justify-self: start;
-    width: min(100%, 320px);
-    aspect-ratio: 1;
+    justify-self: center;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4 / 5;
     order: -1;
-    img.portrait { height: 100%; }
+
+    img.portrait {
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 0%;
+      mask-image: linear-gradient(#000 72%, transparent);
+      -webkit-mask-image: linear-gradient(#000 72%, transparent);
+    }
+
+    .float { font-size: 0.74rem; padding: 0.4rem 0.7rem; }
+    .float.f1 { top: 0.9rem; left: 0.9rem; }
+    .float.f2 { top: auto; right: 0.9rem; bottom: 3.1rem; }
+    .float.f3 { left: 0.9rem; bottom: 0.9rem; }
+    .hero-card-tag { display: none; }
   }
   .hero-stats { grid-template-columns: repeat(2, auto); }
   .hero-scroll { display: none; }
-  .hero-card .hero-card-tag { display: none; }
-  .hero-card .float.f3 { bottom: 1.1rem; left: 1.1rem; }
 }
 
 /* ================= TECH MARQUEE ================= */
