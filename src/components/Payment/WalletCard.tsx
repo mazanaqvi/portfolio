@@ -1,32 +1,20 @@
 import React, { useCallback, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 import type { Wallet } from "../../data/payments";
+import Reveal from "../ui/Reveal";
 
-interface WalletCardProps {
-  wallet: Wallet;
-  index?: number;
-}
-
-const WalletCard: React.FC<WalletCardProps> = ({ wallet, index = 0 }) => {
+const WalletCard: React.FC<{ wallet: Wallet; index?: number }> = ({ wallet, index = 0 }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
-    const value = wallet.number.replace(/\s+/g, "");
-    await copyToClipboard(value);
+    await copyToClipboard(wallet.number.replace(/\s+/g, ""));
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);
   }, [wallet.number]);
 
   return (
-    <div
-      className="pay-wallet-card anim-fade-up"
-      style={
-        {
-          animationDelay: `${0.1 + index * 0.06}s`,
-          "--brand": wallet.brand,
-        } as React.CSSProperties
-      }
-    >
+    <Reveal delay={index * 0.06} className="pay-wallet-card" style={{ "--brand": wallet.brand } as React.CSSProperties}>
       <div className="pay-wallet-logo">
         <img src={wallet.logo} alt={`${wallet.name} logo`} loading="lazy" />
       </div>
@@ -35,17 +23,11 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, index = 0 }) => {
         <span className="pay-wallet-holder">Ahmad Ali Hamza Naqvi</span>
         <span className="pay-wallet-number">{wallet.number}</span>
       </div>
-      <button
-        type="button"
-        className={`pay-copy-btn pay-wallet-copy ${copied ? "copied" : ""}`}
-        onClick={handleCopy}
-        aria-label={`Copy ${wallet.name} number`}
-        title={copied ? "Copied!" : `Copy ${wallet.name} number`}
-      >
-        <i className={copied ? "fas fa-check" : "far fa-copy"}></i>
+      <button type="button" className={`pay-copy-btn ${copied ? "copied" : ""}`} onClick={handleCopy} aria-label={`Copy ${wallet.name} number`}>
+        {copied ? <Check /> : <Copy />}
         <span className="pay-copy-text">{copied ? "Copied" : "Copy"}</span>
       </button>
-    </div>
+    </Reveal>
   );
 };
 

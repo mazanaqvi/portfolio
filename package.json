@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "build:images": "node scripts/build-project-images.mjs",
+    "build:og": "node scripts/build-og-image.mjs",
+    "build:icons": "node scripts/build-favicons.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.1.0",
@@ -16,6 +19,7 @@
     "@capacitor/ios": "^8.1.0",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "docx": "^9.6.1",
+    "lucide-react": "^1.58.0",
     "motion": "^12.42.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

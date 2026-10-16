@@ -1,85 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import { Flag, Globe, Mail, Phone, TriangleAlert } from "lucide-react";
+import Reveal from "../ui/Reveal";
 
 interface PaymentShellProps {
   subtitle: string;
   children: React.ReactNode;
 }
 
-const PaymentShell: React.FC<PaymentShellProps> = ({ subtitle, children }) => {
-  const [visible, setVisible] = useState(false);
+const PaymentShell: React.FC<PaymentShellProps> = ({ subtitle, children }) => (
+  <div className="page pay-page">
+    <div className="container">
+      <Reveal className="page-head">
+        <span className="mono">Payment methods</span>
+        <h1>
+          Pay <span className="em">Ahmad Ali Hamza</span>
+        </h1>
+        <p>{subtitle}</p>
+      </Reveal>
 
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 80);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <section className={`container pay-page ${visible ? "page-visible" : ""}`}>
-      <div className="page-header anim-fade-up">
-        <span className="page-tag">
-          <i className="fas fa-wallet"></i> Payment Methods
-        </span>
-        <h2 className="page-title">
-          Pay <span className="highlight">Ahmad Ali Hamza</span>
-        </h2>
-        <p className="page-subtitle">{subtitle}</p>
-      </div>
-
-      <div className="pay-contact-heading anim-fade-up" style={{ animationDelay: "0.08s" }}>
-        <i className="fas fa-headset"></i>
-        <span>Contact</span>
-      </div>
-
-      <div className="pay-contact anim-fade-up" style={{ animationDelay: "0.1s" }}>
+      <Reveal delay={0.05} className="pay-contact">
         <a className="pay-contact-item" href="tel:+923033999512">
-          <i className="fas fa-phone"></i>
-          <span>0303 3999512</span>
+          <Phone /> 0303 3999512
         </a>
         <a className="pay-contact-item" href="mailto:alihumza.dev@gmail.com">
-          <i className="fas fa-envelope"></i>
-          <span>alihumza.dev@gmail.com</span>
+          <Mail /> alihumza.dev@gmail.com
         </a>
-      </div>
+      </Reveal>
 
-      <div
-        className="pay-toggle anim-fade-up"
-        style={{ animationDelay: "0.15s" }}
-        role="tablist"
-      >
-        <NavLink
-          to="/payment-method"
-          end
-          className={({ isActive }) =>
-            `pay-toggle-btn ${isActive ? "active" : ""}`
-          }
-        >
-          <i className="fas fa-flag"></i> Local — Pakistan
+      <Reveal delay={0.08} className="pay-toggle" role="tablist">
+        <NavLink to="/payment-method" end className={({ isActive }) => `pay-toggle-btn ${isActive ? "active" : ""}`}>
+          <Flag /> Local — Pakistan
         </NavLink>
-        <NavLink
-          to="/payment-method/international"
-          className={({ isActive }) =>
-            `pay-toggle-btn ${isActive ? "active" : ""}`
-          }
-        >
-          <i className="fas fa-globe"></i> International
+        <NavLink to="/payment-method/international" className={({ isActive }) => `pay-toggle-btn ${isActive ? "active" : ""}`}>
+          <Globe /> International
         </NavLink>
-      </div>
+      </Reveal>
 
-      <div className="pay-warning anim-fade-up" style={{ animationDelay: "0.18s" }} role="note">
-        <i className="fas fa-triangle-exclamation"></i>
+      <Reveal delay={0.1} className="pay-warning" role="note">
+        <TriangleAlert />
         <p>
-          Before sending, make sure your bank shows the account title as{" "}
-          <strong>Ahmad Ali Hamza</strong> or <strong>Ahmad Ali Hamza Naqvi</strong>.
-          If it shows any other name, do not send. Confirm with me on{" "}
+          Before sending, make sure your bank shows the account title as <strong>Ahmad Ali Hamza</strong> or{" "}
+          <strong>Ahmad Ali Hamza Naqvi</strong>. If it shows any other name, do not send. Confirm with me on{" "}
           <a href="tel:+923033999512">0303 3999512</a>. The only official page is{" "}
           <strong>alihumza.com/payment-method</strong>.
         </p>
-      </div>
+      </Reveal>
 
       {children}
-    </section>
-  );
-};
+    </div>
+  </div>
+);
 
 export default PaymentShell;

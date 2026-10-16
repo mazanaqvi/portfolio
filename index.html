@@ -2,54 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Ali Humza — Software Engineer specializing in Flutter, React Native, and Full-Stack Development. 4+ years of experience building cross-platform mobile apps and robust backend systems." />
+    <meta name="theme-color" content="#0b0b0c" />
+    <meta name="description" content="Ali Humza is a full-stack and mobile engineer in Lahore building Flutter, React Native and Next.js products, with 10+ apps live on the App Store and Google Play." />
     <meta name="author" content="Ali Humza" />
+    <link rel="canonical" href="https://alihumza.com/" />
 
-    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://alihumza.com/" />
-    <meta property="og:title" content="Ali Humza" />
-    <meta property="og:description" content="Full-Stack Developer" />
-    <meta property="og:image" content="https://alihumza.com/img/preview.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1729" />
-    <meta property="og:image:height" content="910" />
-    <meta property="og:image:alt" content="Ali Humza — Full-Stack Developer" />
     <meta property="og:site_name" content="Ali Humza" />
+    <meta property="og:title" content="Ali Humza — Full-stack & mobile engineer" />
+    <meta property="og:description" content="Flutter, React Native and Next.js products. 10+ apps live in stores, Top Rated on Upwork." />
+    <meta property="og:image" content="https://alihumza.com/og.png" />
+    <meta property="og:image:secure_url" content="https://alihumza.com/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ali Humza — Full-stack & mobile engineer" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ali Humza" />
-    <meta name="twitter:description" content="Full-Stack Developer" />
-    <meta name="twitter:image" content="https://alihumza.com/img/preview.png" />
-    <meta name="twitter:image:alt" content="Ali Humza — Full-Stack Developer" />
+    <meta name="twitter:title" content="Ali Humza — Full-stack & mobile engineer" />
+    <meta name="twitter:description" content="Flutter, React Native and Next.js products. 10+ apps live in stores, Top Rated on Upwork." />
+    <meta name="twitter:image" content="https://alihumza.com/og.png" />
+    <meta name="twitter:image:alt" content="Ali Humza — Full-stack & mobile engineer" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Ali Humza — Software Engineer & Mobile App Developer</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>Ali Humza — Full-stack & Mobile Engineer</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body>
+
     <script>
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          var prefersDark =
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches;
-          var isLight = stored === "light" || (!stored && !prefersDark);
-          if (isLight) {
-            document.body.classList.add("light-mode");
-          }
+          var light = stored === "light" || (!stored && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+          document.documentElement.dataset.theme = light ? "light" : "dark";
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.content = light ? "#f6f5f1" : "#0b0b0c";
         } catch (e) {}
       })();
     </script>
+  </head>
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

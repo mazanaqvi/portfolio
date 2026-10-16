@@ -1,0 +1,80 @@
+[
+  {
+    "id": "wallets-friend",
+    "src": "public/img/wallets-friend.png",
+    "mode": "fit"
+  },
+  {
+    "id": "docings",
+    "src": "public/img/source/docings-live.png",
+    "mode": "cover"
+  },
+  {
+    "id": "glory-global-driver",
+    "src": "public/img/port15_gloryglobal.png",
+    "mode": "fit"
+  },
+  {
+    "id": "baker-baby",
+    "src": "public/img/bakerbaby.png",
+    "mode": "fit"
+  },
+  {
+    "id": "salesbuckets",
+    "src": "public/img/source/salesbuckets-live.png",
+    "mode": "cover"
+  },
+  {
+    "id": "hit-rewind",
+    "src": "public/img/hitrewind.png",
+    "mode": "fit"
+  },
+  {
+    "id": "kindshare",
+    "src": "public/img/kindshare.png",
+    "mode": "fit"
+  },
+  {
+    "id": "eclaim",
+    "src": "public/img/port10.png",
+    "mode": "fit"
+  },
+  {
+    "id": "moshaf",
+    "src": "public/img/port11.png",
+    "mode": "fit"
+  },
+  {
+    "id": "matchark",
+    "src": "public/img/port13.png",
+    "mode": "fit"
+  },
+  {
+    "id": "my-black-market",
+    "src": "public/img/port5.png",
+    "mode": "fit"
+  },
+  {
+    "id": "mashrab-e-naab",
+    "src": "public/img/port2.png",
+    "mode": "fit"
+  },
+  {
+    "id": "xrossapps",
+    "src": "public/img/xrossapps.png",
+    "mode": "fit",
+    "pad": 0.03
+  },
+  {
+    "id": "cars-bazaar",
+    "src": "public/img/carbazaar.png",
+    "mode": "fit",
+    "pad": 0.03
+  },
+  {
+    "id": "bache-erp",
+    "src": "public/img/bache.png",
+    "mode": "fit",
+    "pad": 0.03
+  }
+]

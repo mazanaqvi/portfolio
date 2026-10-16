@@ -1,0 +1,133 @@
+/* ================= 2048 ================= */
+.game-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.game-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.game-scores { display: flex; gap: 0.6rem; }
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--line);
+
+  .label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); display: inline-flex; align-items: center; gap: 0.3rem; svg { width: 12px; height: 12px; color: var(--warning); } }
+  .value { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+}
+
+.game-actions { display: flex; gap: 0.5rem; }
+
+.game-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  touch-action: none;
+  user-select: none;
+}
+
+.game-cell { border-radius: 10px; background: var(--surface-2); }
+
+.game-tile {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 5vw, 1.9rem);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  background: var(--surface-3);
+  animation: tile-pop 0.15s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes tile-pop {
+  0% { transform: scale(0.7); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.game-tile.t-2 { background: var(--surface-3); }
+.game-tile.t-4 { background: #3a3a3f; color: #fff; }
+.game-tile.t-8 { background: #55602a; color: #fff; }
+.game-tile.t-16 { background: #6c7f1f; color: #fff; }
+.game-tile.t-32 { background: #86a318; color: #0b0b0c; }
+.game-tile.t-64 { background: #a3c71f; color: #0b0b0c; }
+.game-tile.t-128 { background: #c8f135; color: #0b0b0c; font-size: clamp(1rem, 4.5vw, 1.7rem); }
+.game-tile.t-256 { background: #d9ff5a; color: #0b0b0c; font-size: clamp(1rem, 4.5vw, 1.7rem); }
+.game-tile.t-512 { background: #eaffb0; color: #0b0b0c; font-size: clamp(1rem, 4.5vw, 1.7rem); }
+.game-tile.t-1024 { background: #f3f3ee; color: #0b0b0c; font-size: clamp(0.85rem, 4vw, 1.4rem); }
+.game-tile.t-2048 { background: linear-gradient(135deg, #c8f135, #f3f3ee); color: #0b0b0c; font-size: clamp(0.85rem, 4vw, 1.4rem); box-shadow: 0 0 24px rgba(200, 241, 53, 0.5); }
+
+:root[data-theme="light"] {
+  .game-tile.t-2 { background: #e2e0d8; color: #121211; }
+  .game-tile.t-4 { background: #cfcdc3; color: #121211; }
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+
+  .inner { text-align: center; }
+  img { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 0.8rem; border-radius: 24px; }
+  .emoji { font-size: 3.2rem; line-height: 1; margin-bottom: 0.6rem; display: inline-block; animation: emoji-happy 1s ease-in-out infinite; }
+  h3 { font-size: 1.7rem; margin-bottom: 0.3rem; }
+  p { color: var(--text-2); font-size: 0.95rem; margin-bottom: 1.1rem; }
+  .actions { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+}
+
+@keyframes emoji-happy {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(8deg) scale(1.1); }
+}
+
+.game-hint {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-3);
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .game-topbar { flex-direction: column; align-items: stretch; }
+  .game-scores .score-box { flex: 1; }
+  .game-actions .btn { flex: 1; }
+}

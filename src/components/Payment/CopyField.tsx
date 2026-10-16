@@ -1,12 +1,9 @@
 import React, { useCallback, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 import type { PaymentField } from "../../data/payments";
 
-interface CopyFieldProps {
-  field: PaymentField;
-}
-
-const CopyField: React.FC<CopyFieldProps> = ({ field }) => {
+const CopyField: React.FC<{ field: PaymentField }> = ({ field }) => {
   const [copied, setCopied] = useState(false);
   const canCopy = field.copyable !== false;
   const textToCopy = field.copyValue ?? field.value.replace(/\s+/g, "");
@@ -30,7 +27,7 @@ const CopyField: React.FC<CopyFieldProps> = ({ field }) => {
             aria-label={`Copy ${field.label}`}
             title={copied ? "Copied!" : `Copy ${field.label}`}
           >
-            <i className={copied ? "fas fa-check" : "far fa-copy"}></i>
+            {copied ? <Check /> : <Copy />}
             <span className="pay-copy-text">{copied ? "Copied" : "Copy"}</span>
           </button>
         )}
