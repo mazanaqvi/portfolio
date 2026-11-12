@@ -3,6 +3,8 @@ import { socials } from "../data/site";
 import Reveal from "../components/ui/Reveal";
 import ContactCta from "../components/home/ContactCta";
 import { useSpotlight } from "../hooks/useSpotlight";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
 const SocialCard: React.FC<{ s: (typeof socials)[number]; i: number }> = ({ s, i }) => {
   const onMove = useSpotlight<HTMLAnchorElement>();
@@ -22,7 +24,9 @@ const SocialCard: React.FC<{ s: (typeof socials)[number]; i: number }> = ({ s, i
   );
 };
 
-const ContactPage: React.FC = () => (
+const ContactPage: React.FC = () => {
+  useSeo(pageSeo.contact);
+  return (
   <>
     <div className="page" style={{ paddingBottom: 0 }}>
       <div className="container">
@@ -43,5 +47,6 @@ const ContactPage: React.FC = () => (
     <ContactCta />
   </>
 );
+};
 
 export default ContactPage;

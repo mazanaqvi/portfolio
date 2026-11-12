@@ -1,13 +1,18 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowUpRight, Smartphone, Globe, Sparkles } from "lucide-react";
+import { ArrowUpRight, Globe, Smartphone, Sparkles } from "lucide-react";
 import { PROJECT_IMAGE, projectImage, type Project } from "../../data/projects";
+import { projectPath } from "../../data/seo";
 import { useSpotlight } from "../../hooks/useSpotlight";
+import { IS_PRERENDER } from "../../lib/env";
 
 interface ProjectCardProps {
   project: Project;
   index: number;
-  onOpen: (project: Project) => void;
+  /** Wide editorial layout with the description, used for the lead project. */
+  feature?: boolean;
+  ref?: React.Ref<HTMLElement>;
 }
 
 const kindBadge: Record<string, { label: string; icon: React.ReactNode }> = {
@@ -16,62 +21,74 @@ const kindBadge: Record<string, { label: string; icon: React.ReactNode }> = {
   web: { label: "Web", icon: <Globe /> },
 };
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onOpen }) => {
-  const [loaded, setLoaded] = useState(false);
-  const onMove = useSpotlight<HTMLButtonElement>();
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, feature, ref }) => {
+  const [loaded, setLoaded] = useState(IS_PRERENDER);
+  const onMove = useSpotlight<HTMLAnchorElement>();
   const primaryKind = project.kind[0];
 
+  const reveal = IS_PRERENDER
+    ? {}
+    : {
+        layout: true,
+        initial: { opacity: 0, y: 28 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-60px 0px" },
+        exit: { opacity: 0, scale: 0.96 },
+        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const, delay: (index % 4) * 0.06 },
+      };
+
   return (
-    <motion.button
-      type="button"
-      layout
-      className="card spotlight project-card"
-      style={{ "--accent-color": project.accent } as React.CSSProperties}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px 0px" }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: (index % 4) * 0.06 }}
-      onMouseMove={onMove}
-      onClick={() => onOpen(project)}
-      aria-label={`Open ${project.title}`}
-    >
-      <div className="project-media">
-        <img
-          src={projectImage(project.id)}
-          alt={`${project.title} screenshot`}
-          width={PROJECT_IMAGE.width}
-          height={PROJECT_IMAGE.height}
-          loading={index < 2 ? "eager" : "lazy"}
-          decoding="async"
-          className={loaded ? "loaded" : ""}
-          onLoad={() => setLoaded(true)}
-        />
-        <div className="project-media-glow" />
-        <div className="project-badges">
-          <span className="badge">
-            {kindBadge[primaryKind].icon}
-            {kindBadge[primaryKind].label}
+    <motion.article ref={ref} className={`project-cell ${feature ? "is-feature" : ""}`} {...reveal}>
+      <Link
+        to={projectPath(project.id)}
+        className="card spotlight project-card"
+        style={{ "--accent-color": project.accent } as React.CSSProperties}
+        onMouseMove={onMove}
+        aria-label={`${project.title}: ${project.tagline}`}
+      >
+        <div className="project-media">
+          <img
+            src={projectImage(project.id)}
+            alt={`${project.title} — ${project.tagline}`}
+            width={PROJECT_IMAGE.width}
+            height={PROJECT_IMAGE.height}
+            loading={index < 2 ? "eager" : "lazy"}
+            decoding="async"
+            className={loaded ? "loaded" : ""}
+            onLoad={() => setLoaded(true)}
+          />
+          <div className="project-media-glow" />
+          <div className="project-badges">
+            <span className="badge">
+              {kindBadge[primaryKind].icon}
+              {kindBadge[primaryKind].label}
+            </span>
+            {project.client && <span className="badge">{project.client}</span>}
+          </div>
+          <span className="project-view">
+            Case study <ArrowUpRight />
           </span>
-          {project.client && <span className="badge">{project.client}</span>}
         </div>
-        <span className="project-view">
-          View case <ArrowUpRight />
-        </span>
-      </div>
-      <div className="project-body">
-        <div className="project-top">
-          <h3>{project.title}</h3>
-          <span className="year">{project.year}</span>
+        <div className="project-body">
+          <div className="project-top">
+            <h3>{project.title}</h3>
+            <span className="year">{project.year}</span>
+          </div>
+          <p className="tagline">{project.tagline}</p>
+          {feature && <p className="desc">{project.description}</p>}
+          <div className="stack">
+            {project.stack.slice(0, 4).map((s) => (
+              <span key={s}>{s}</span>
+            ))}
+          </div>
+          {feature && (
+            <span className="feature-link">
+              Read the case study <ArrowUpRight />
+            </span>
+          )}
         </div>
-        <p className="tagline">{project.tagline}</p>
-        <div className="stack">
-          {project.stack.slice(0, 4).map((s) => (
-            <span key={s}>{s}</span>
-          ))}
-        </div>
-      </div>
-    </motion.button>
+      </Link>
+    </motion.article>
   );
 };
 

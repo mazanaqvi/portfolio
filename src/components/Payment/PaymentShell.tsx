@@ -29,10 +29,10 @@ const PaymentShell: React.FC<PaymentShellProps> = ({ subtitle, children }) => (
       </Reveal>
 
       <Reveal delay={0.08} className="pay-toggle" role="tablist">
-        <NavLink to="/payment-method" end className={({ isActive }) => `pay-toggle-btn ${isActive ? "active" : ""}`}>
+        <NavLink to="/payment-method/" end className={({ isActive }) => `pay-toggle-btn ${isActive ? "active" : ""}`}>
           <Flag /> Local — Pakistan
         </NavLink>
-        <NavLink to="/payment-method/international" className={({ isActive }) => `pay-toggle-btn ${isActive ? "active" : ""}`}>
+        <NavLink to="/payment-method/international/" className={({ isActive }) => `pay-toggle-btn ${isActive ? "active" : ""}`}>
           <Globe /> International
         </NavLink>
       </Reveal>

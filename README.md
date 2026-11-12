@@ -20,7 +20,7 @@ The visual system is called **Ink & Signal**: warm near-black canvases in dark m
 Interactive bits worth knowing about:
 
 - `⌘K` / `Ctrl+K` opens a command palette (pages, projects, copy email, theme). `T` toggles the theme.
-- Project cards have a cursor-following spotlight and open a case modal; the open project and active filter live in the URL (`/work?filter=mobile&project=glory-global-driver`).
+- Project cards have a cursor-following spotlight and link to a case-study page (`/work/glory-global-driver/`); the active filter lives in the URL (`/work/?filter=mobile`).
 - Reviews are a draggable carousel on the home page and a full list on `/reviews`.
 - The footer shows a live Lahore clock.
 
@@ -40,19 +40,40 @@ npm run build:images
 
 The Open Graph card is `public/og.jpg` (1200 × 630), rebuilt from `public/img/preview.png` with `npm run build:og`.
 
+## SEO and static pages
+
+GitHub Pages only answers 200 for files that exist, so a plain single-page build makes every route except `/` return HTTP 404 to search engines. `npm run build` therefore ends with `scripts/prerender.mjs`, which loads each route in headless Chrome and saves the rendered HTML:
+
+```
+dist/index.html
+dist/work/index.html
+dist/work/<project-id>/index.html   one case-study page per project
+dist/about/index.html  …            and so on
+dist/sitemap.xml                    every indexable URL
+```
+
+- Routes are published as folders, so canonical URLs end in a slash (`/work/`).
+- `src/data/seo.ts` holds the title and description for every page; `useSeo` keeps the head in sync and the prerender step saves the result.
+- `index.html` carries JSON-LD for the person (name "Ali Humza", alternate spelling "Ali Hamza", job title, profiles) and the site.
+- The payment and game pages are marked `noindex`.
+- Prerendered markup sits in `#root` for crawlers and stays hidden for visitors with JavaScript until the app mounts, so there is no flash.
+- If Chrome is missing the build still succeeds as a plain SPA and prints a warning. Set `CHROME_PATH` to point at a browser.
+
+After a deploy, submit `https://alihumza.com/sitemap.xml` in Google Search Console.
+
 ## Structure
 
 ```
 src/
 ├── components/
 │   ├── layout/   Navbar, Footer, CommandPalette, ScrollProgress, ThemeToggle, ToTop
-│   ├── home/     Hero, TechStrip, FeaturedWork, Experience, Skills, Testimonials, ContactCta
-│   ├── work/     ProjectCard, ProjectGrid, ProjectModal
+│   ├── home/     Hero, TechStrip, FeaturedWork, StoreLedger, NowSection, Experience, Skills, Testimonials, ContactCta
+│   ├── work/     ProjectCard, ProjectGrid
 │   ├── ui/       Reveal, Magnetic, Counter, Marquee, SectionHead, StoreLink, ToastProvider
 │   └── Payment/  Bank and wallet cards for /payment-method
-├── data/         projects.ts, site.ts, resume.ts, reviews.ts, payments.ts
+├── data/         projects.ts, site.ts, seo.ts, resume.ts, reviews.ts, payments.ts
 ├── hooks/        useTheme, useToast, useCopy, useSpotlight, useMediaQuery, useCommandPalette, use2048
-├── pages/        Home, Work, About, Reviews, Resume, Contact, Game, Payment*
+├── pages/        Home, Work, Project (case study), About, Reviews, Resume, Contact, Game, Payment*
 └── styles/       _tokens, _base, _components, _sections, _game, _payment
 ```
 
@@ -60,7 +81,7 @@ src/
 
 ```bash
 npm run dev            # start Vite
-npm run build          # typecheck + production build
+npm run build          # typecheck + production build + prerender + sitemap
 npm run preview        # serve the build
 npm run lint
 npm run build:images   # regenerate 1600x1000 project images
@@ -69,7 +90,7 @@ npm run build:og       # regenerate the 1200x630 OG card
 
 ## Deployment
 
-Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`. Old URLs (`/mobile`, `/websites`, `/products`, `/live-apps`) redirect to the filtered `/work` page.
+Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`. Old URLs (`/mobile`, `/websites`, `/products`, `/live-apps`) redirect to the filtered `/work/` page.
 
 ## Contact
 

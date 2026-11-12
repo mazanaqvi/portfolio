@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { animate, useInView } from "motion/react";
+import { IS_PRERENDER } from "../../lib/env";
 
 interface CounterProps {
   to: number;
@@ -13,7 +14,7 @@ const Counter: React.FC<CounterProps> = ({ to, duration = 1.4, className }) => {
   const inView = useInView(ref, { once: true, margin: "-40px" });
 
   useEffect(() => {
-    if (!inView || !ref.current) return;
+    if (IS_PRERENDER || !inView || !ref.current) return;
     const el = ref.current;
     const controls = animate(0, to, {
       duration,
@@ -25,9 +26,11 @@ const Counter: React.FC<CounterProps> = ({ to, duration = 1.4, className }) => {
     return () => controls.stop();
   }, [inView, to, duration]);
 
+  // The real number is in the markup from the start, so crawlers and
+  // no-JS readers never see "0".
   return (
     <span ref={ref} className={className}>
-      0
+      {to}
     </span>
   );
 };

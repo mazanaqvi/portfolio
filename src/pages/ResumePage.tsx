@@ -2,9 +2,12 @@ import { Download, FileText, Printer } from "lucide-react";
 import { resumeData } from "../data/resume";
 import { RESUME_PDF_URL } from "../data/site";
 import Reveal from "../components/ui/Reveal";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
 const ResumePage: React.FC = () => {
   const r = resumeData;
+  useSeo(pageSeo.resume);
   const downloadDocx = async () => {
     const { downloadResume } = await import("../utils/generateResume");
     downloadResume();

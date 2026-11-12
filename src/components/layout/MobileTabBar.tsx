@@ -4,10 +4,10 @@ import { Briefcase, Home, Mail, MessageSquare, User } from "lucide-react";
 
 const tabs = [
   { label: "Home", path: "/", icon: Home, end: true },
-  { label: "Work", path: "/work", icon: Briefcase },
-  { label: "About", path: "/about", icon: User },
-  { label: "Reviews", path: "/reviews", icon: MessageSquare },
-  { label: "Contact", path: "/contact", icon: Mail },
+  { label: "Work", path: "/work/", icon: Briefcase },
+  { label: "About", path: "/about/", icon: User },
+  { label: "Reviews", path: "/reviews/", icon: MessageSquare },
+  { label: "Contact", path: "/contact/", icon: Mail },
 ];
 
 /** App-style bottom navigation, shown on phones only (see _components.scss). */

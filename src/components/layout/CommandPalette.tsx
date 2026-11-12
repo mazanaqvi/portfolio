@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { navItems, site, socials } from "../../data/site";
 import { projects } from "../../data/projects";
+import { projectPath } from "../../data/seo";
 import { useTheme } from "../../hooks/useTheme";
 import { useCopy } from "../../hooks/useCopy";
 import { CommandPaletteContext } from "../../hooks/useCommandPalette";
@@ -34,11 +35,11 @@ interface Cmd {
 }
 
 const pageIcons: Record<string, React.ReactNode> = {
-  "/work": <Briefcase />,
-  "/about": <User />,
-  "/reviews": <MessageSquare />,
-  "/resume": <FileText />,
-  "/contact": <Mail />,
+  "/work/": <Briefcase />,
+  "/about/": <User />,
+  "/reviews/": <MessageSquare />,
+  "/resume/": <FileText />,
+  "/contact/": <Mail />,
 };
 
 export const CommandPaletteProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -65,7 +66,7 @@ export const CommandPaletteProvider: React.FC<{ children: React.ReactNode }> = (
     return [
       { id: "home", group: "Pages", label: "Home", icon: <Home />, run: go("/") },
       ...navItems.map((n) => ({ id: n.path, group: "Pages", label: n.label, icon: pageIcons[n.path] ?? <Home />, run: go(n.path) })),
-      { id: "game", group: "Pages", label: "Play 2048", hint: "break", icon: <Gamepad2 />, run: go("/game") },
+      { id: "game", group: "Pages", label: "Play 2048", hint: "break", icon: <Gamepad2 />, run: go("/game/") },
       {
         id: "email",
         group: "Actions",
@@ -96,7 +97,7 @@ export const CommandPaletteProvider: React.FC<{ children: React.ReactNode }> = (
         keywords: p.stack.join(" "),
         icon: <Briefcase />,
         run: () => {
-          navigate(`/work?project=${p.id}`);
+          navigate(projectPath(p.id));
           close();
         },
       })),

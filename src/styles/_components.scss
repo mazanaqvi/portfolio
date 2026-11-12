@@ -161,6 +161,10 @@
 
 .nav-burger { display: none; }
 
+.nav-hire { margin-left: 0.25rem; }
+
+.nav-cmd { padding: 0.35rem 0.5rem 0.35rem 0.65rem; }
+
 /* mobile sheet */
 .nav-sheet {
   position: fixed;
@@ -195,9 +199,11 @@
 }
 
 @media (max-width: 820px) {
-  .nav-links, .nav-cmd { display: none; }
+  .nav-links, .nav-cmd, .nav .nav-hire { display: none; }
   .nav-burger { display: inline-grid; }
 }
+
+.nav-brand { white-space: nowrap; }
 
 /* ---------- buttons ---------- */
 .btn {

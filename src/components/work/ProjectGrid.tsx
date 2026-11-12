@@ -1,9 +1,8 @@
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { projectById, projects, type Project, type ProjectKind } from "../../data/projects";
+import { projects, type Project, type ProjectKind } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
-import ProjectModal from "./ProjectModal";
 
 type Filter = "all" | ProjectKind;
 
@@ -17,13 +16,14 @@ const filters: { id: Filter; label: string }[] = [
 interface ProjectGridProps {
   items?: Project[];
   showFilters?: boolean;
+  /** Render the first project as a wide feature card. */
+  featureFirst?: boolean;
 }
 
-const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters = true }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters = true, featureFirst }) => {
   const [params, setParams] = useSearchParams();
-  const filter = (params.get("filter") as Filter) || "all";
-  const openId = params.get("project");
-  const openProject = useMemo(() => (openId ? projectById(openId) ?? null : null), [openId]);
+  const raw = params.get("filter");
+  const filter: Filter = filters.some((f) => f.id === raw) ? (raw as Filter) : "all";
 
   const setFilter = (f: Filter) => {
     const next = new URLSearchParams(params);
@@ -31,21 +31,6 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters
     else next.set("filter", f);
     setParams(next, { replace: true });
   };
-
-  const open = useCallback(
-    (p: Project) => {
-      const next = new URLSearchParams(params);
-      next.set("project", p.id);
-      setParams(next);
-    },
-    [params, setParams]
-  );
-
-  const close = useCallback(() => {
-    const next = new URLSearchParams(params);
-    next.delete("project");
-    setParams(next);
-  }, [params, setParams]);
 
   const visible = useMemo(
     () => (filter === "all" ? items : items.filter((p) => p.kind.includes(filter))),
@@ -82,16 +67,14 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters
         </div>
       )}
 
-      <motion.div layout className="work-grid">
+      <div className="work-grid">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} onOpen={open} />
+            <ProjectCard key={p.id} project={p} index={i} feature={featureFirst && i === 0} />
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
       {visible.length === 0 && <div className="work-empty">Nothing here yet.</div>}
-
-      <ProjectModal project={openProject} onClose={close} />
     </>
   );
 };

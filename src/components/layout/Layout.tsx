@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -10,7 +10,14 @@ import MobileTabBar from "./MobileTabBar";
 import { CommandPaletteProvider } from "./CommandPalette";
 
 const Layout: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
+  const navigate = useNavigate();
+
+  // Pages are published as folders (/work/), so keep the address bar,
+  // canonical tags and active-link matching on that one form.
+  useEffect(() => {
+    if (!pathname.endsWith("/")) navigate(`${pathname}/${search}${hash}`, { replace: true });
+  }, [pathname, search, hash, navigate]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });

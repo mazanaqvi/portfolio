@@ -2,8 +2,12 @@ import { reviews } from "../data/reviews";
 import Reveal from "../components/ui/Reveal";
 import { ReviewCard, ReviewsSummary } from "../components/home/Testimonials";
 import ContactCta from "../components/home/ContactCta";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
-const ReviewsPage: React.FC = () => (
+const ReviewsPage: React.FC = () => {
+  useSeo(pageSeo.reviews);
+  return (
   <>
     <div className="page">
       <div className="container">
@@ -27,5 +31,6 @@ const ReviewsPage: React.FC = () => (
     <ContactCta />
   </>
 );
+};
 
 export default ReviewsPage;

@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { featuredProjects } from "../../data/projects";
+import { featuredProjects, projects } from "../../data/projects";
 import SectionHead from "../ui/SectionHead";
 import ProjectGrid from "../work/ProjectGrid";
+
+// One wide lead project plus four cards keeps the two-column grid even.
+const shown = featuredProjects.slice(0, 5);
 
 const FeaturedWork: React.FC = () => (
   <section className="section" id="work">
@@ -14,17 +17,17 @@ const FeaturedWork: React.FC = () => (
             Products and apps <span className="em">in the wild</span>
           </>
         }
-        text="A few things I've shipped recently. Click any card for the full story, stack and store links."
+        text="A few things I've shipped recently. Each one opens a case study with the stack, my role and the live links."
         action={
-          <Link to="/work" className="btn ghost">
+          <Link to="/work/" className="btn ghost">
             All projects <ArrowRight className="btn-arrow" />
           </Link>
         }
       />
-      <ProjectGrid items={featuredProjects} showFilters={false} />
+      <ProjectGrid items={shown} showFilters={false} featureFirst />
       <div className="featured-foot">
-        <Link to="/work" className="btn soft">
-          Browse all 15 projects <ArrowRight className="btn-arrow" />
+        <Link to="/work/" className="btn soft">
+          Browse all {projects.length} projects <ArrowRight className="btn-arrow" />
         </Link>
       </div>
     </div>

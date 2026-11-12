@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { IS_PRERENDER } from "../../lib/env";
 
 const INTERACTIVE = "a, button, [role='button'], input, textarea, select, label, summary";
 
@@ -11,7 +12,7 @@ const INTERACTIVE = "a, button, [role='button'], input, textarea, select, label,
  * pointers (mouse / trackpad).
  */
 const Cursor: React.FC = () => {
-  const fine = useMediaQuery("(pointer: fine)");
+  const fine = useMediaQuery("(pointer: fine)") && !IS_PRERENDER;
   const reduce = useMediaQuery("(prefers-reduced-motion: reduce)");
   const [visible, setVisible] = useState(false);
   const [hover, setHover] = useState(false);

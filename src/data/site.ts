@@ -13,7 +13,7 @@ export const site = {
 };
 
 export const hero = {
-  eyebrow: "Full-stack & mobile engineer",
+  eyebrow: "Software engineer",
   roles: ["Flutter apps", "React Native apps", "Next.js products", "NestJS & Django APIs", "iOS & tvOS in Swift"],
   intro:
     "I design and ship cross-platform apps and the backends behind them. Four years in, 10+ apps live on the App Store and Google Play, and a Top Rated record on Upwork.",
@@ -150,10 +150,49 @@ export const education = {
   details: "CGPA 3.3 / 4.0 · Dean's List, Spring 2021",
 };
 
+export interface NowItem {
+  tag: string;
+  icon: "building" | "rocket" | "flask";
+  title: string;
+  text: string;
+  learning?: boolean;
+  chips?: string[];
+  projects?: { label: string; id: string }[];
+}
+
+/** What I'm doing right now. The "lab" item is work in progress and says so. */
+export const nowItems: NowItem[] = [
+  {
+    tag: "Day job",
+    icon: "building",
+    title: "Engineering at Breeze Labs",
+    text: "Full-stack work for a Singapore product studio: web apps in Next.js, mobile in Flutter and React Native, and LLM tooling for clients in the US and GCC.",
+    chips: ["Next.js", "Flutter", "React Native", "LLMs"],
+  },
+  {
+    tag: "My products",
+    icon: "rocket",
+    title: "Growing Docings and Wallets Friend",
+    text: "Two products I design, build and run under XrossApps. Docings makes resumes, invoices and documents. Wallets Friend tracks budgets, expenses and loans.",
+    projects: [
+      { label: "Docings", id: "docings" },
+      { label: "Wallets Friend", id: "wallets-friend" },
+    ],
+  },
+  {
+    tag: "In the lab",
+    icon: "flask",
+    learning: true,
+    title: "AI voice agents and n8n automations",
+    text: "Learning to put voice agents and workflow automation on top of the apps and APIs I already ship. The first builds will land on this page.",
+    chips: ["Voice agents", "n8n", "LLM tooling"],
+  },
+];
+
 export const about = {
   headline: "Engineer, founder, and the person who answers your messages.",
   paragraphs: [
-    "I'm Ali, a software engineer from Lahore. I started on Upwork in 2020 building Flutter apps for founders who needed something in stores fast, and I never stopped shipping. Today I split my time between Breeze Labs, where I build web, mobile and AI products, and XrossApps, my own studio.",
+    "I'm Ali Humza (you'll also see it spelled Ali Hamza), a software engineer from Lahore. I started on Upwork in 2020 building Flutter apps for founders who needed something in stores fast, and I never stopped shipping. Today I split my time between Breeze Labs, where I build web, mobile and AI products, and XrossApps, my own studio.",
     "I care about the parts people feel: the screen that loads instantly, the gesture that lands, the API that doesn't flake at 2am. I like owning a feature from the Figma file to the store listing, and I'm happiest when a client ships something their users actually open every day.",
     "Off the clock I'm usually poking at a side product, reading about how other teams ship, or losing to my own 2048 board.",
   ],
@@ -187,11 +226,11 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { label: "Work", path: "/work" },
-  { label: "About", path: "/about" },
-  { label: "Reviews", path: "/reviews" },
-  { label: "Resume", path: "/resume" },
-  { label: "Contact", path: "/contact" },
+  { label: "Work", path: "/work/" },
+  { label: "About", path: "/about/" },
+  { label: "Reviews", path: "/reviews/" },
+  { label: "Resume", path: "/resume/" },
+  { label: "Contact", path: "/contact/" },
 ];
 
 export const RESUME_PDF_URL =

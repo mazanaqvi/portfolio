@@ -3,8 +3,12 @@ import { Earth } from "lucide-react";
 import PaymentShell from "../components/Payment/PaymentShell";
 import AccountCard from "../components/Payment/AccountCard";
 import { internationalAccounts } from "../data/payments";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
-const PaymentInternationalPage: React.FC = () => (
+const PaymentInternationalPage: React.FC = () => {
+  useSeo(pageSeo.paymentInternational);
+  return (
   <PaymentShell subtitle="International receiving account via Payoneer. Tap copy to grab the account number, routing or SWIFT code instantly.">
     <div className="pay-section-heading">
       <Earth /> International transfer
@@ -16,5 +20,6 @@ const PaymentInternationalPage: React.FC = () => (
     </div>
   </PaymentShell>
 );
+};
 
 export default PaymentInternationalPage;

@@ -4,8 +4,12 @@ import PaymentShell from "../components/Payment/PaymentShell";
 import AccountCard from "../components/Payment/AccountCard";
 import WalletCard from "../components/Payment/WalletCard";
 import { banks, wallets } from "../data/payments";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
-const PaymentMethodPage: React.FC = () => (
+const PaymentMethodPage: React.FC = () => {
+  useSeo(pageSeo.payment);
+  return (
   <PaymentShell subtitle="Local Pakistani bank accounts and digital wallets. Tap copy to grab any account number or IBAN instantly.">
     <div className="pay-section-heading">
       <Landmark /> Bank accounts
@@ -25,5 +29,6 @@ const PaymentMethodPage: React.FC = () => (
     </div>
   </PaymentShell>
 );
+};
 
 export default PaymentMethodPage;

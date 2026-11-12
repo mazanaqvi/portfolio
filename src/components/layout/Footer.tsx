@@ -25,7 +25,10 @@ const Footer: React.FC = () => {
         <div className="footer-top">
           <div className="footer-brand">
             <h3>{site.name}</h3>
-            <p>Full-stack and mobile engineer. Building apps people open every day, from {site.location}.</p>
+            <p>
+              Ali Humza (also spelled Ali Hamza) is a software engineer building apps people open every day, from{" "}
+              {site.location}.
+            </p>
           </div>
           <div className="footer-col">
             <span className="mono">Pages</span>
@@ -35,7 +38,7 @@ const Footer: React.FC = () => {
                 {n.label}
               </Link>
             ))}
-            <Link to="/game">Play 2048</Link>
+            <Link to="/game/">Play 2048</Link>
           </div>
           <div className="footer-col">
             <span className="mono">Elsewhere</span>

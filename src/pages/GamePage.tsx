@@ -2,11 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Crown, RotateCcw, Undo2 } from "lucide-react";
 import { use2048, type Direction } from "../hooks/use2048";
 import Reveal from "../components/ui/Reveal";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
 const SWIPE_THRESHOLD = 24;
 
 const GamePage: React.FC = () => {
   const { board, score, bestScore, won, over, canUndo, move, undo, reset } = use2048();
+  useSeo(pageSeo.game);
   const [dismissedWin, setDismissedWin] = useState(false);
   const boardRef = useRef<HTMLDivElement>(null);
   const moveRef = useRef(move);

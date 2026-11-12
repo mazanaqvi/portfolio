@@ -5,6 +5,8 @@ import Reveal from "../components/ui/Reveal";
 import Experience from "../components/home/Experience";
 import Skills from "../components/home/Skills";
 import { useSpotlight } from "../hooks/useSpotlight";
+import { pageSeo } from "../data/seo";
+import { useSeo } from "../hooks/useSeo";
 
 const Principle: React.FC<{ p: (typeof about.principles)[number]; i: number }> = ({ p, i }) => {
   const onMove = useSpotlight<HTMLDivElement>();
@@ -17,7 +19,9 @@ const Principle: React.FC<{ p: (typeof about.principles)[number]; i: number }> =
   );
 };
 
-const AboutPage: React.FC = () => (
+const AboutPage: React.FC = () => {
+  useSeo(pageSeo.about);
+  return (
   <>
     <div className="page">
       <div className="container">
@@ -34,7 +38,7 @@ const AboutPage: React.FC = () => (
               </Reveal>
             ))}
             <Reveal delay={0.2} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
-              <Link to="/contact" className="btn primary">
+              <Link to="/contact/" className="btn primary">
                 Work with me <ArrowRight className="btn-arrow" />
               </Link>
               <a className="btn ghost" href={RESUME_PDF_URL} target="_blank" rel="noopener noreferrer">
@@ -98,5 +102,6 @@ const AboutPage: React.FC = () => (
     <Skills />
   </>
 );
+};
 
 export default AboutPage;

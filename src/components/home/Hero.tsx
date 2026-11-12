@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Send } from "lucide-react";
 import { hero, site, RESUME_PDF_URL } from "../../data/site";
 import Counter from "../ui/Counter";
 import Magnetic from "../ui/Magnetic";
 import { useReducedMotion } from "../../hooks/useMediaQuery";
+import { IS_PRERENDER } from "../../lib/env";
 
 function useTypewriter(words: string[]) {
-  const [state, setState] = useState({ i: 0, text: "", deleting: false });
+  const [state, setState] = useState({ i: 0, text: IS_PRERENDER ? words[0] : "", deleting: false });
 
   useEffect(() => {
+    if (IS_PRERENDER) return;
     const word = words[state.i];
     const atEnd = !state.deleting && state.text === word;
     const atStart = state.deleting && state.text === "";
@@ -29,6 +31,9 @@ function useTypewriter(words: string[]) {
 
   return state.text;
 }
+
+/** Entrance state, skipped during static capture so the saved HTML is fully visible. */
+const from = <T,>(v: T) => (IS_PRERENDER ? false : v);
 
 const title = ["I build apps", "people open", "every day."];
 
@@ -50,7 +55,7 @@ const Hero: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || IS_PRERENDER) return;
     const onMove = (e: MouseEvent) => {
       mx.set(e.clientX / window.innerWidth - 0.5);
       my.set(e.clientY / window.innerHeight - 0.5);
@@ -71,7 +76,7 @@ const Hero: React.FC = () => {
         <div>
           <motion.div
             className="hero-status"
-            initial={{ opacity: 0, y: 10 }}
+            initial={from({ opacity: 0, y: 10 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -80,11 +85,19 @@ const Hero: React.FC = () => {
           </motion.div>
 
           <h1 className="hero-title">
+            <motion.span
+              className="hero-kicker"
+              initial={from({ opacity: 0, y: 8 })}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+            >
+              {site.name} <span className="sep">/</span> {hero.eyebrow}
+            </motion.span>
             {title.map((line, li) => (
               <span className="line" key={line}>
                 <motion.span
                   className="word"
-                  initial={{ y: "110%", rotate: 3 }}
+                  initial={from({ y: "110%", rotate: 3 })}
                   animate={{ y: 0, rotate: 0 }}
                   transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 + li * 0.1 }}
                 >
@@ -102,11 +115,11 @@ const Hero: React.FC = () => {
 
           <motion.div
             className="hero-role"
-            initial={{ opacity: 0 }}
+            initial={from({ opacity: 0 })}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <span>{site.name} · shipping</span>
+            <span>Currently shipping</span>
             <span className="typed">
               {typed}
               <span className="caret" />
@@ -115,7 +128,7 @@ const Hero: React.FC = () => {
 
           <motion.p
             className="hero-intro"
-            initial={{ opacity: 0, y: 12 }}
+            initial={from({ opacity: 0, y: 12 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
@@ -124,25 +137,28 @@ const Hero: React.FC = () => {
 
           <motion.div
             className="hero-actions"
-            initial={{ opacity: 0, y: 12 }}
+            initial={from({ opacity: 0, y: 12 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
           >
             <Magnetic>
-              <Link to="/work" className="btn primary lg">
+              <Link to="/work/" className="btn primary lg">
                 See my work <ArrowRight className="btn-arrow" />
               </Link>
             </Magnetic>
             <Magnetic>
-              <a className="btn ghost lg" href={RESUME_PDF_URL} target="_blank" rel="noopener noreferrer">
-                <Download /> Resume
-              </a>
+              <Link to="/contact/" className="btn ghost lg">
+                <Send /> Hire me
+              </Link>
             </Magnetic>
+            <a className="hero-resume" href={RESUME_PDF_URL} target="_blank" rel="noopener noreferrer">
+              <Download /> Resume PDF
+            </a>
           </motion.div>
 
           <motion.div
             className="hero-stats"
-            initial={{ opacity: 0 }}
+            initial={from({ opacity: 0 })}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.6 }}
           >
@@ -160,20 +176,27 @@ const Hero: React.FC = () => {
 
         <motion.div
           className="hero-card"
-          style={reduce ? undefined : { rotateX: rotX, rotateY: rotY }}
-          initial={{ opacity: 0, y: 30, scale: 0.96 }}
+          style={reduce || IS_PRERENDER ? undefined : { rotateX: rotX, rotateY: rotY }}
+          initial={from({ opacity: 0, y: 30, scale: 0.96 })}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
         >
           <div className="hero-card-glow" />
-          <img className="portrait" src="/img/hero.png" alt={`${site.name}, portrait`} width={380} height={532} />
-          <motion.span className="float f1" animate={{ y: [0, -6, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+          <img
+            className="portrait"
+            src="/img/hero.png"
+            alt={`${site.name} (Ali Hamza), software engineer in Lahore`}
+            width={380}
+            height={532}
+            fetchPriority="high"
+          />
+          <motion.span className="float f1" animate={IS_PRERENDER ? undefined : { y: [0, -6, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
             <span className="dot" /> Flutter · React Native
           </motion.span>
-          <motion.span className="float f2" animate={{ y: [0, 6, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
+          <motion.span className="float f2" animate={IS_PRERENDER ? undefined : { y: [0, 6, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
             <span className="dot" /> Next.js · NestJS
           </motion.span>
-          <motion.span className="float f3" animate={{ y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}>
+          <motion.span className="float f3" animate={IS_PRERENDER ? undefined : { y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}>
             <span className="dot" /> Top Rated on Upwork
           </motion.span>
           <div className="hero-card-tag">
