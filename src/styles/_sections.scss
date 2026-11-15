@@ -597,7 +597,7 @@
   font-size: 0.9rem;
   transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
 
-  i { font-size: 1.2rem; width: 22px; text-align: center; }
+  .brand-icon { width: 22px; height: 1.2rem; }
   svg { width: 18px; height: 18px; }
   small { display: block; font-size: 0.65rem; font-weight: 500; opacity: 0.7; line-height: 1; margin-bottom: 0.15rem; }
   span { line-height: 1.1; }
@@ -856,12 +856,12 @@
     gap: 0.9rem;
     padding: 1rem 1.1rem;
 
-    i { font-size: 1.3rem; width: 28px; text-align: center; color: var(--text-2); transition: color 0.2s; }
+    .brand-icon { width: 28px; height: 1.3rem; color: var(--text-2); transition: color 0.2s; }
     .name { font-weight: 600; }
     .handle { display: block; font-size: 0.8rem; color: var(--text-3); }
     .arrow { margin-left: auto; color: var(--text-3); transition: transform 0.3s var(--ease-out), color 0.2s; svg { width: 16px; height: 16px; } }
 
-    &:hover { border-color: var(--line-strong); i { color: var(--accent-text); } .arrow { transform: translate(2px, -2px); color: var(--text); } }
+    &:hover { border-color: var(--line-strong); .brand-icon { color: var(--accent-text); } .arrow { transform: translate(2px, -2px); color: var(--text); } }
   }
 }
 
@@ -934,7 +934,7 @@
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--line-strong);
     margin-bottom: 1.5rem;
-    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    .rp-name { font-size: clamp(1.8rem, 4vw, 2.6rem); }
     .title { color: var(--text-2); font-size: 1.05rem; }
     .tech { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-3); margin-top: 0.3rem; }
     .contact { text-align: right; font-size: 0.85rem; color: var(--text-2); line-height: 1.7; a { color: var(--accent-text); } @media (max-width: 600px) { text-align: left; } }
@@ -1072,7 +1072,7 @@
   white-space: nowrap;
   transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.25s var(--ease-out);
 
-  i { font-size: 0.95rem; }
+  .brand-icon { width: 0.95rem; height: 0.95rem; }
   &:hover {
     background: var(--text);
     border-color: var(--text);
@@ -1096,7 +1096,7 @@
   .ledger-idx { display: none; }
   .ledger-tag { grid-column: 1; grid-row: 2; font-size: 0.85rem; }
   .ledger-stores { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-  .store-chip { padding: 0.5rem; span { display: none; } i { font-size: 1.05rem; width: 1.1rem; text-align: center; } }
+  .store-chip { padding: 0.5rem; span { display: none; } .brand-icon { width: 1.1rem; height: 1.05rem; } }
 }
 
 /* ================= NOW ================= */

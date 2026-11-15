@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SITE_URL, type PageSeo } from "../data/seo";
+import { DEFAULT_SHARE, SITE_URL, type PageSeo } from "../data/seo";
 
 function setAttr(selector: string, attr: string, value: string) {
   const el = document.head.querySelector(selector);
@@ -14,6 +14,8 @@ function setAttr(selector: string, attr: string, value: string) {
  */
 export function useSeo(seo: PageSeo, jsonLd?: unknown) {
   const { title, description, path, noindex } = seo;
+  const image = `${SITE_URL}${seo.image ?? DEFAULT_SHARE.image}`;
+  const imageAlt = seo.imageAlt ?? DEFAULT_SHARE.alt;
   const ld = jsonLd ? JSON.stringify(jsonLd) : "";
 
   useEffect(() => {
@@ -26,6 +28,11 @@ export function useSeo(seo: PageSeo, jsonLd?: unknown) {
     setAttr('meta[property="og:url"]', "content", url);
     setAttr('meta[name="twitter:title"]', "content", title);
     setAttr('meta[name="twitter:description"]', "content", description);
+    setAttr('meta[property="og:image"]', "content", image);
+    setAttr('meta[property="og:image:secure_url"]', "content", image);
+    setAttr('meta[property="og:image:alt"]', "content", imageAlt);
+    setAttr('meta[name="twitter:image"]', "content", image);
+    setAttr('meta[name="twitter:image:alt"]', "content", imageAlt);
     setAttr(
       'meta[name="robots"]',
       "content",
@@ -42,5 +49,5 @@ export function useSeo(seo: PageSeo, jsonLd?: unknown) {
     } else if (existing) {
       existing.remove();
     }
-  }, [title, description, path, noindex, ld]);
+  }, [title, description, path, noindex, image, imageAlt, ld]);
 }

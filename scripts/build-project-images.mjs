@@ -2,7 +2,10 @@
  * Normalises every project image to one fixed resolution so cards never crop
  * or letterbox inconsistently.
  *
- *   Output: public/img/projects/<id>.webp  (1600 x 1000, 16:10)
+ *   Output: public/img/projects/<id>.webp        1600 x 1000 (16:10)
+ *           public/img/projects/<id>-1200.webp   1200 x 750  (srcset)
+ *           public/img/projects/<id>-800.webp    800 x 500   (srcset)
+ *           public/img/og/<id>.jpg               1200 x 630  link-preview card
  *
  * Two modes per source:
  *   - "cover":   source is already 16:10 (live screenshots) -> resize cover.
@@ -23,6 +26,19 @@ export const HEIGHT = 1000;
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = resolve(ROOT, "public/img/projects");
+const OG_DIR = resolve(ROOT, "public/img/og");
+
+/** Smaller widths for srcset, and the 1200x630 share card, from the 1600 master. */
+async function derive(id) {
+  const master = resolve(OUT_DIR, `${id}.webp`);
+  for (const w of [800, 1200]) {
+    await sharp(master).resize(w).webp({ quality: 82 }).toFile(resolve(OUT_DIR, `${id}-${w}.webp`));
+  }
+  await sharp(master)
+    .resize(1200, 630, { fit: "cover", position: "centre" })
+    .jpeg({ quality: 84, mozjpeg: true })
+    .toFile(resolve(OG_DIR, `${id}.jpg`));
+}
 
 async function buildOne({ id, src, mode = "fit", pad = 0.06 }) {
   const input = resolve(ROOT, src);
@@ -93,13 +109,15 @@ async function buildOne({ id, src, mode = "fit", pad = 0.06 }) {
       .webp({ quality: 84 })
       .toFile(out);
   }
-  console.log(`  ✓ ${id}.webp  (${mode})`);
+  await derive(id);
+  console.log(`  ✓ ${id}.webp + 800/1200 + og  (${mode})`);
 }
 
 async function main() {
   const manifestPath = process.argv[2] ?? resolve(ROOT, "scripts/project-images.json");
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
   await mkdir(OUT_DIR, { recursive: true });
+  await mkdir(OG_DIR, { recursive: true });
   console.log(`Building ${manifest.length} project images at ${WIDTH}x${HEIGHT}…`);
   for (const entry of manifest) await buildOne(entry);
 }

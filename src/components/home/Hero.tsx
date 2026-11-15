@@ -6,10 +6,10 @@ import { hero, site, RESUME_PDF_URL } from "../../data/site";
 import Counter from "../ui/Counter";
 import Magnetic from "../ui/Magnetic";
 import { useReducedMotion } from "../../hooks/useMediaQuery";
-import { IS_PRERENDER } from "../../lib/env";
+import { IS_PRERENDER, skipEntrance } from "../../lib/env";
 
 function useTypewriter(words: string[]) {
-  const [state, setState] = useState({ i: 0, text: IS_PRERENDER ? words[0] : "", deleting: false });
+  const [state, setState] = useState(() => ({ i: 0, text: skipEntrance() ? words[0] : "", deleting: false }));
 
   useEffect(() => {
     if (IS_PRERENDER) return;
@@ -32,8 +32,8 @@ function useTypewriter(words: string[]) {
   return state.text;
 }
 
-/** Entrance state, skipped during static capture so the saved HTML is fully visible. */
-const from = <T,>(v: T) => (IS_PRERENDER ? false : v);
+/** Entrance state, skipped when this screen was already shown as static HTML. */
+const from = <T,>(v: T) => (skipEntrance() ? false : v);
 
 const title = ["I build apps", "people open", "every day."];
 
@@ -184,7 +184,7 @@ const Hero: React.FC = () => {
           <div className="hero-card-glow" />
           <img
             className="portrait"
-            src="/img/hero.png"
+            src="/img/hero.webp"
             alt={`${site.name} (Ali Hamza), software engineer in Lahore`}
             width={380}
             height={532}

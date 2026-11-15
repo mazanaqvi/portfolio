@@ -203,20 +203,22 @@ export const about = {
   ],
 };
 
+import type { BrandName } from "../components/ui/brandIcons";
+
 export interface SocialLink {
   name: string;
   url: string;
-  icon: string;
+  icon: BrandName;
   handle: string;
 }
 
 export const socials: SocialLink[] = [
-  { name: "GitHub", url: "https://github.com/mazanaqvi", icon: "fab fa-github", handle: "@mazanaqvi" },
-  { name: "LinkedIn", url: "https://www.linkedin.com/in/mazanaqvi/", icon: "fab fa-linkedin-in", handle: "in/mazanaqvi" },
-  { name: "Upwork", url: "https://www.upwork.com/freelancers/~01aea3e66df60ee009", icon: "fab fa-upwork", handle: "Top Rated" },
-  { name: "Stack Overflow", url: "https://stackoverflow.com/users/13111347/ali-hamza", icon: "fab fa-stack-overflow", handle: "ali-hamza" },
-  { name: "X", url: "https://twitter.com/mazaanaqvi", icon: "fab fa-x-twitter", handle: "@mazaanaqvi" },
-  { name: "YouTube", url: "https://www.youtube.com/channel/UCfqP1OsD9GJE7BoeZV53AsA", icon: "fab fa-youtube", handle: "Ali Humza" },
+  { name: "GitHub", url: "https://github.com/mazanaqvi", icon: "github", handle: "@mazanaqvi" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/mazanaqvi/", icon: "linkedin-in", handle: "in/mazanaqvi" },
+  { name: "Upwork", url: "https://www.upwork.com/freelancers/~01aea3e66df60ee009", icon: "upwork", handle: "Top Rated" },
+  { name: "Stack Overflow", url: "https://stackoverflow.com/users/13111347/ali-hamza", icon: "stack-overflow", handle: "ali-hamza" },
+  { name: "X", url: "https://twitter.com/mazaanaqvi", icon: "x-twitter", handle: "@mazaanaqvi" },
+  { name: "YouTube", url: "https://www.youtube.com/channel/UCfqP1OsD9GJE7BoeZV53AsA", icon: "youtube", handle: "Ali Humza" },
 ];
 
 export interface NavItem {

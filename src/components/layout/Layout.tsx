@@ -8,10 +8,12 @@ import ToTop from "./ToTop";
 import Cursor from "./Cursor";
 import MobileTabBar from "./MobileTabBar";
 import { CommandPaletteProvider } from "./CommandPalette";
+import { trackNavigation } from "../../lib/env";
 
 const Layout: React.FC = () => {
   const { pathname, search, hash } = useLocation();
   const navigate = useNavigate();
+  trackNavigation(pathname);
 
   // Pages are published as folders (/work/), so keep the address bar,
   // canonical tags and active-link matching on that one form.

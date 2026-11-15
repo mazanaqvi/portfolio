@@ -871,3 +871,12 @@ html.has-cursor select {
     max-height: calc(100dvh - var(--tabbar-h) - env(safe-area-inset-bottom) - 2rem);
   }
 }
+
+/* ---------- brand logos (inline SVG) ---------- */
+.brand-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}

@@ -10,7 +10,7 @@ const PaymentLayout: React.FC = () => (
     <header className="nav">
       <div className="nav-inner">
         <Link to="/" className="nav-brand">
-          <img className="brand-mark" src="/img/hero.png" alt="" width={30} height={30} />
+          <img className="brand-mark" src="/img/avatar.webp" alt="" width={30} height={30} />
           <span>{site.name}</span>
         </Link>
         <div className="nav-actions">

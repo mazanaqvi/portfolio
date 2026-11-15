@@ -1,6 +1,7 @@
 /**
  * Every project card uses the same image resolution so the grid stays even:
- *   public/img/projects/<id>.webp  —  1600 x 1000 (16:10)
+ *   public/img/projects/<id>.webp  —  1600 x 1000 (16:10), plus -800 / -1200 widths
+ *   public/img/og/<id>.jpg         —  1200 x 630 share card
  * Regenerate with `npm run build:images` (see scripts/project-images.json).
  */
 export const PROJECT_IMAGE = { width: 1600, height: 1000 } as const;
@@ -308,6 +309,11 @@ export const projects: Project[] = [
 export const featuredProjects = projects.filter((p) => p.featured);
 export const projectById = (id: string) => projects.find((p) => p.id === id);
 export const projectImage = (id: string) => `/img/projects/${id}.webp`;
+/** Same image at 800 and 1200 px wide, so phones don't download the 1600 px file. */
+export const projectSrcSet = (id: string) =>
+  `/img/projects/${id}-800.webp 800w, /img/projects/${id}-1200.webp 1200w, ${projectImage(id)} 1600w`;
+/** 1200x630 link-preview card for the project's case-study page. */
+export const projectShareImage = (id: string) => `/img/og/${id}.jpg`;
 
 export const hasStoreLink = (p: Project) =>
   p.links.some((l) => l.type === "appstore" || l.type === "playstore");

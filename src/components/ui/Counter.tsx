@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, useInView } from "motion/react";
-import { IS_PRERENDER } from "../../lib/env";
+import { skipEntrance } from "../../lib/env";
 
 interface CounterProps {
   to: number;
@@ -12,9 +12,10 @@ interface CounterProps {
 const Counter: React.FC<CounterProps> = ({ to, duration = 1.4, className }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [skip] = useState(skipEntrance);
 
   useEffect(() => {
-    if (IS_PRERENDER || !inView || !ref.current) return;
+    if (skip || !inView || !ref.current) return;
     const el = ref.current;
     const controls = animate(0, to, {
       duration,
@@ -24,7 +25,7 @@ const Counter: React.FC<CounterProps> = ({ to, duration = 1.4, className }) => {
       },
     });
     return () => controls.stop();
-  }, [inView, to, duration]);
+  }, [skip, inView, to, duration]);
 
   // The real number is in the markup from the start, so crawlers and
   // no-JS readers never see "0".

@@ -18,9 +18,11 @@ interface ProjectGridProps {
   showFilters?: boolean;
   /** Render the first project as a wide feature card. */
   featureFirst?: boolean;
+  /** How many leading cards load their image eagerly (those on the first screen). */
+  eagerCount?: number;
 }
 
-const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters = true, featureFirst }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters = true, featureFirst, eagerCount = 2 }) => {
   const [params, setParams] = useSearchParams();
   const raw = params.get("filter");
   const filter: Filter = filters.some((f) => f.id === raw) ? (raw as Filter) : "all";
@@ -70,7 +72,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ items = projects, showFilters
       <div className="work-grid">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} feature={featureFirst && i === 0} />
+            <ProjectCard key={p.id} project={p} index={i} feature={featureFirst && i === 0} eager={i < eagerCount} />
           ))}
         </AnimatePresence>
       </div>

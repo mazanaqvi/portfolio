@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { PROJECT_IMAGE, projectById, projectImage, projects } from "../data/projects";
+import { PROJECT_IMAGE, projectById, projectImage, projectSrcSet, projects } from "../data/projects";
 import { projectJsonLd, projectPath, projectSeo, pageSeo } from "../data/seo";
 import { useSeo } from "../hooks/useSeo";
 import Reveal from "../components/ui/Reveal";
@@ -51,6 +51,9 @@ const ProjectPage: React.FC = () => {
           <Reveal delay={0.05} className="card case-media">
             <img
               src={projectImage(project.id)}
+              srcSet={projectSrcSet(project.id)}
+              sizes="(max-width: 1260px) 100vw, 1180px"
+              fetchPriority="high"
               alt={`${project.title} — ${project.tagline}`}
               width={PROJECT_IMAGE.width}
               height={PROJECT_IMAGE.height}

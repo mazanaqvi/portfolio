@@ -4,12 +4,13 @@ import { hasStoreLink, projects } from "../../data/projects";
 import { projectPath } from "../../data/seo";
 import Reveal from "../ui/Reveal";
 import SectionHead from "../ui/SectionHead";
+import BrandIcon from "../ui/BrandIcon";
 
 const storeApps = projects.filter(hasStoreLink);
 
 const storeMeta = {
-  appstore: { icon: "fab fa-apple", label: "App Store" },
-  playstore: { icon: "fab fa-google-play", label: "Google Play" },
+  appstore: { icon: "apple", label: "App Store" },
+  playstore: { icon: "google-play", label: "Google Play" },
 } as const;
 
 /** The "10+ apps" claim, itemised: every app that is live in a store right now. */
@@ -51,7 +52,7 @@ const StoreLedger: React.FC = () => (
                       aria-label={`${p.title} on the ${m.label}`}
                       title={m.label}
                     >
-                      <i className={m.icon} aria-hidden />
+                      <BrandIcon name={m.icon} />
                       <span>{m.label}</span>
                     </a>
                   );

@@ -28,8 +28,8 @@ const Navbar: React.FC = () => {
     <>
       <header className={`nav ${hidden ? "is-hidden" : ""}`}>
         <div className="nav-inner">
-          <Link to="/" className="nav-brand" aria-label="Home">
-            <img className="brand-mark" src="/img/hero.png" alt="" width={30} height={30} />
+          <Link to="/" className="nav-brand">
+            <img className="brand-mark" src="/img/avatar.webp" alt="" width={30} height={30} />
             <span>{site.name}</span>
             <span className="brand-dot" title={site.availability} />
           </Link>

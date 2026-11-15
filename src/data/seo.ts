@@ -1,4 +1,4 @@
-import { projects, type Project } from "./projects";
+import { projectShareImage, projects, type Project } from "./projects";
 
 export const SITE_URL = "https://alihumza.com";
 export const PERSON_ID = `${SITE_URL}/#person`;
@@ -9,14 +9,22 @@ export interface PageSeo {
   title: string;
   description: string;
   noindex?: boolean;
+  /** Site-relative 1200x630 JPEG for link previews; defaults to /og.jpg. */
+  image?: string;
+  imageAlt?: string;
 }
+
+export const DEFAULT_SHARE = {
+  image: "/og.jpg",
+  alt: "Ali Humza, software engineer: builds apps people open",
+};
 
 export const pageSeo = {
   home: {
     path: "/",
     title: "Ali Humza (Ali Hamza) — Software Engineer in Lahore",
     description:
-      "Ali Humza, also spelled Ali Hamza, is a software engineer in Lahore, Pakistan. Full-stack and mobile: Flutter, React Native, Next.js. 10+ apps live in the stores.",
+      "Ali Humza, also spelled Ali Hamza, is a software engineer in Lahore, Pakistan. Full-stack and mobile: Flutter, React Native, Next.js. 10+ apps in the stores.",
   },
   work: {
     path: "/work/",
@@ -79,6 +87,8 @@ export function projectSeo(p: Project): PageSeo {
     path: projectPath(p.id),
     title: `${p.title} — ${kindLabel(p)} by Ali Humza`,
     description: base.length > 158 ? `${base.slice(0, 155).trimEnd()}…` : base,
+    image: projectShareImage(p.id),
+    imageAlt: `${p.title}: ${p.tagline}`,
   };
 }
 

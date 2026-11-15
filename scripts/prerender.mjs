@@ -10,7 +10,7 @@
  * build still succeeds as a plain SPA and says so loudly.
  */
 import http from "node:http";
-import { spawn } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -39,6 +39,38 @@ const routes = [
   ["/payment-method/", false],
   ["/payment-method/international/", false],
 ];
+
+/**
+ * Source files behind each page, for the sitemap's <lastmod>. Google only
+ * trusts lastmod when it tracks real content changes, so each URL gets the
+ * date of the last commit that touched these files, not the build date.
+ */
+const SHARED = ["index.html", "src/data/site.ts"];
+const pageSources = {
+  "/": ["src/pages/HomePage.tsx", "src/components/home", "src/data/projects.ts", "src/data/reviews.ts"],
+  "/work/": ["src/pages/WorkPage.tsx", "src/components/work", "src/data/projects.ts"],
+  "/about/": ["src/pages/AboutPage.tsx", "src/components/home/Experience.tsx", "src/components/home/Skills.tsx"],
+  "/reviews/": ["src/pages/ReviewsPage.tsx", "src/components/home/Testimonials.tsx", "src/data/reviews.ts"],
+  "/resume/": ["src/pages/ResumePage.tsx", "src/data/resume.ts"],
+  "/contact/": ["src/pages/ContactPage.tsx", "src/components/home/ContactCta.tsx"],
+};
+const sourcesFor = (route) => {
+  const id = route.match(/^\/work\/([^/]+)\/$/)?.[1];
+  const own = id ? ["src/pages/ProjectPage.tsx", "src/data/projects.ts", `public/img/projects/${id}.webp`] : pageSources[route] ?? [];
+  return [...SHARED, ...own];
+};
+
+function git(args) {
+  try {
+    return execFileSync("git", args, { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+  } catch {
+    return "";
+  }
+}
+
+/** YYYY-MM-DD of the last commit touching the route's sources, or null when history is unavailable. */
+const historyOk = git(["rev-parse", "--is-shallow-repository"]) === "false";
+const lastmod = (route) => (historyOk ? git(["log", "-1", "--format=%cs", "--", ...sourcesFor(route)]) || null : null);
 
 /** Old URLs that still get shared: static redirect stubs. */
 const redirects = {
@@ -144,7 +176,7 @@ async function writePage(route, html) {
 
 async function main() {
   const shell = await readFile(join(DIST, "index.html"), "utf8");
-  const today = new Date().toISOString().slice(0, 10);
+  if (!historyOk) console.warn("⚠ prerender: no full git history (shallow clone?); sitemap will omit <lastmod>.");
 
   // Sitemap and redirect stubs do not need a browser.
   const sitemap =
@@ -152,8 +184,8 @@ async function main() {
     routes
       .filter(([, indexable]) => indexable)
       .map(([r]) => {
-        const priority = r === "/" ? "1.0" : r.split("/").length > 3 ? "0.6" : "0.8";
-        return `  <url><loc>${SITE}${r}</loc><lastmod>${today}</lastmod><priority>${priority}</priority></url>`;
+        const date = lastmod(r);
+        return `  <url><loc>${SITE}${r}</loc>${date ? `<lastmod>${date}</lastmod>` : ""}</url>`;
       })
       .join("\n") +
     `\n</urlset>\n`;

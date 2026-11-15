@@ -48,7 +48,7 @@ const AboutPage: React.FC = () => {
           </div>
           <div className="about-side">
             <Reveal className="card about-portrait">
-              <img src="/img/hero.png" alt={`${site.name}, portrait`} width={380} height={532} />
+              <img src="/img/hero.webp" alt={`${site.name}, portrait`} width={380} height={532} />
             </Reveal>
             <Reveal delay={0.1} className="card fact-list">
               <div className="fact">

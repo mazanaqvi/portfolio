@@ -10,7 +10,8 @@ Live at **[alihumza.com](https://alihumza.com)**.
 - React Router 7
 - [Motion](https://motion.dev) for animation (scroll reveals, layout transitions, drag carousel, magnetic buttons)
 - SCSS with CSS custom properties for theming
-- lucide-react for UI icons, Font Awesome brands for store and social glyphs
+- lucide-react for UI icons; brand logos are inline SVG (`src/components/ui/brandIcons.ts`, extracted from Font Awesome Free)
+- Geist, Geist Mono and Instrument Serif self-hosted through Fontsource, Latin subsets only
 - Capacitor wrappers for iOS and Android (`ios/`, `android/`)
 
 ## Design
@@ -38,7 +39,9 @@ Sources and modes are declared in `scripts/project-images.json`. `cover` is for 
 npm run build:images
 ```
 
-The Open Graph card is `public/og.jpg` (1200 × 630), rebuilt from `public/img/preview.png` with `npm run build:og`.
+The same script writes 800 and 1200 px versions for `srcset`, and a 1200 × 630 share card per project in `public/img/og/`, used as that case study's link preview.
+
+The site-wide Open Graph card is `public/og.jpg` (1200 × 630), rendered from `scripts/og-card.html` with `npm run build:og`. The portrait's web versions (`hero.webp`, `avatar.webp`) come from `hero.png` with `npm run build:portrait`.
 
 ## SEO and static pages
 
@@ -56,7 +59,8 @@ dist/sitemap.xml                    every indexable URL
 - `src/data/seo.ts` holds the title and description for every page; `useSeo` keeps the head in sync and the prerender step saves the result.
 - `index.html` carries JSON-LD for the person (name "Ali Humza", alternate spelling "Ali Hamza", job title, profiles) and the site.
 - The payment and game pages are marked `noindex`.
-- Prerendered markup sits in `#root` for crawlers and stays hidden for visitors with JavaScript until the app mounts, so there is no flash.
+- Prerendered markup is visible from the first paint. The app mounts one frame later and skips entrance animations for whatever was already on screen; sections below the fold still animate in.
+- `sitemap.xml` gives each URL the date of the last commit that touched its source files. CI checks out full history (`fetch-depth: 0`) for this.
 - If Chrome is missing the build still succeeds as a plain SPA and prints a warning. Set `CHROME_PATH` to point at a browser.
 
 After a deploy, submit `https://alihumza.com/sitemap.xml` in Google Search Console.
@@ -86,6 +90,8 @@ npm run preview        # serve the build
 npm run lint
 npm run build:images   # regenerate 1600x1000 project images
 npm run build:og       # regenerate the 1200x630 OG card
+npm run build:portrait # regenerate hero.webp and avatar.webp from hero.png
+npm run build:icons    # regenerate the favicon set
 ```
 
 ## Deployment

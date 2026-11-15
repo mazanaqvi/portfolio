@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { socials } from "../data/site";
 import Reveal from "../components/ui/Reveal";
 import ContactCta from "../components/home/ContactCta";
+import BrandIcon from "../components/ui/BrandIcon";
 import { useSpotlight } from "../hooks/useSpotlight";
 import { pageSeo } from "../data/seo";
 import { useSeo } from "../hooks/useSeo";
@@ -11,7 +12,7 @@ const SocialCard: React.FC<{ s: (typeof socials)[number]; i: number }> = ({ s, i
   return (
     <Reveal delay={i * 0.05}>
       <a className="card spotlight" href={s.url} target="_blank" rel="noopener noreferrer" onMouseMove={onMove}>
-        <i className={s.icon} aria-hidden />
+        <BrandIcon name={s.icon} />
         <span>
           <span className="name">{s.name}</span>
           <span className="handle">{s.handle}</span>

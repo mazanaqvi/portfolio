@@ -38,7 +38,7 @@ const ResumePage: React.FC = () => {
         <Reveal delay={0.1} className="resume-paper">
           <div className="rp-head">
             <div>
-              <h1>{r.name}</h1>
+              <h2 className="rp-name">{r.name}</h2>
               <div className="title">{r.title}</div>
               {r.technologies && <div className="tech">{r.technologies}</div>}
             </div>

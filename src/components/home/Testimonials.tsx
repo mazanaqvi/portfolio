@@ -7,7 +7,7 @@ import Reveal from "../ui/Reveal";
 import { useSpotlight } from "../../hooks/useSpotlight";
 
 const Stars: React.FC<{ n: number }> = ({ n }) => (
-  <span className="stars" aria-label={`${n} out of 5 stars`}>
+  <span className="stars" role="img" aria-label={`${n} out of 5 stars`}>
     {Array.from({ length: 5 }, (_, i) => (
       <Star key={i} style={{ opacity: i < n ? 1 : 0.25 }} />
     ))}

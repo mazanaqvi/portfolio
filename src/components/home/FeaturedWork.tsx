@@ -24,7 +24,7 @@ const FeaturedWork: React.FC = () => (
           </Link>
         }
       />
-      <ProjectGrid items={shown} showFilters={false} featureFirst />
+      <ProjectGrid items={shown} showFilters={false} featureFirst eagerCount={0} />
       <div className="featured-foot">
         <Link to="/work/" className="btn soft">
           Browse all {projects.length} projects <ArrowRight className="btn-arrow" />

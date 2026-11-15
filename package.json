@@ -12,12 +12,16 @@
     "build:images": "node scripts/build-project-images.mjs",
     "build:og": "node scripts/build-og-image.mjs",
     "build:icons": "node scripts/build-favicons.mjs",
-    "prerender": "node scripts/prerender.mjs"
+    "prerender": "node scripts/prerender.mjs",
+    "build:portrait": "node scripts/build-portrait-images.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "@capacitor/ios": "^8.1.0",
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource/geist-mono": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "docx": "^9.6.1",
     "lucide-react": "^1.58.0",

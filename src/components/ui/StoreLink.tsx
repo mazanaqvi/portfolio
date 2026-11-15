@@ -1,11 +1,12 @@
 import { ExternalLink } from "lucide-react";
 import type { ProjectLink } from "../../data/projects";
+import BrandIcon from "./BrandIcon";
 
 const meta: Record<ProjectLink["type"], { small: string; label: string; icon: React.ReactNode }> = {
-  appstore: { small: "Download on the", label: "App Store", icon: <i className="fab fa-apple" aria-hidden /> },
-  playstore: { small: "Get it on", label: "Google Play", icon: <i className="fab fa-google-play" aria-hidden /> },
+  appstore: { small: "Download on the", label: "App Store", icon: <BrandIcon name="apple" /> },
+  playstore: { small: "Get it on", label: "Google Play", icon: <BrandIcon name="google-play" /> },
   web: { small: "Open the", label: "Live site", icon: <ExternalLink /> },
-  github: { small: "View on", label: "GitHub", icon: <i className="fab fa-github" aria-hidden /> },
+  github: { small: "View on", label: "GitHub", icon: <BrandIcon name="github" /> },
 };
 
 const StoreLink: React.FC<{ link: ProjectLink; ghost?: boolean }> = ({ link, ghost }) => {
