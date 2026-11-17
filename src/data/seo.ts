@@ -24,7 +24,7 @@ export const pageSeo = {
     path: "/",
     title: "Ali Humza (Ali Hamza) — Software Engineer in Lahore",
     description:
-      "Ali Humza, also spelled Ali Hamza, is a software engineer in Lahore, Pakistan. Full-stack and mobile: Flutter, React Native, Next.js. 10+ apps in the stores.",
+      "Ali Humza, also spelled Ali Hamza, is a software engineer in Lahore, Pakistan. Full-stack and mobile: Flutter, React Native, Next.js. 10+ apps shipped.",
   },
   work: {
     path: "/work/",
@@ -46,9 +46,9 @@ export const pageSeo = {
   },
   resume: {
     path: "/resume/",
-    title: "Resume — Ali Hamza (Ali Humza), Full-Stack Software Engineer",
+    title: "Resume — Ali Humza (Ali Hamza), Full-Stack Software Engineer",
     description:
-      "Resume of Ali Hamza, full-stack software engineer: React, Next.js, Flutter, React Native, NestJS and Django. Read online or download as PDF or DOCX.",
+      "Resume of Ali Humza (Ali Hamza), full-stack software engineer: React, Next.js, Flutter, React Native, NestJS and Django. Read online or download as PDF or DOCX.",
   },
   contact: {
     path: "/contact/",
@@ -75,6 +75,14 @@ export const pageSeo = {
     noindex: true,
   },
 } satisfies Record<string, PageSeo>;
+
+/** Not-found pages: never indexed, canonical left at the requested address. */
+export const notFoundSeo = (path: string): PageSeo => ({
+  path,
+  title: "Page not found — Ali Humza",
+  description: "This page doesn't exist on alihumza.com. Browse Ali Humza's projects or get in touch.",
+  noindex: true,
+});
 
 const kindLabel = (p: Project) =>
   p.kind.includes("mobile") ? "Mobile App" : p.kind.includes("web") ? "Web App" : "Product";

@@ -15,12 +15,11 @@ export const site = {
 export const hero = {
   eyebrow: "Software engineer",
   roles: ["Flutter apps", "React Native apps", "Next.js products", "NestJS & Django APIs", "iOS & tvOS in Swift"],
-  intro:
-    "I design and ship cross-platform apps and the backends behind them. Four years in, 10+ apps live on the App Store and Google Play, and a Top Rated record on Upwork.",
+  intro: `I design and ship cross-platform apps and the backends behind them. ${YEARS_EXPERIENCE}+ years in, ${APPS_SHIPPED}+ apps shipped to the App Store and Google Play, and a Top Rated record on Upwork.`,
   stats: [
     { value: 25, suffix: "+", label: "Projects shipped" },
-    { value: 10, suffix: "+", label: "Apps in stores" },
-    { value: 4, suffix: "+", label: "Years building" },
+    { value: liveAppCount, suffix: "", label: "Apps live in stores" },
+    { value: YEARS_EXPERIENCE, suffix: "+", label: "Years building" },
     { value: 100, suffix: "%", label: "Job success" },
   ],
 };
@@ -95,59 +94,24 @@ export interface ExperienceItem {
   current?: boolean;
 }
 
-export const experience: ExperienceItem[] = [
-  {
-    company: "Breeze Labs",
-    role: "Full-stack Software Engineer",
-    period: "Feb 2024 — Present",
-    location: "Singapore · Remote",
-    current: true,
-    summary:
-      "Product studio building SaaS and AI tools for clients in the US and GCC. I own features from design hand-off to release across web and mobile.",
-    bullets: [
-      "Built and maintained React and Next.js web apps, owning features end to end.",
-      "Led Flutter and React Native work and ran App Store and Play Store release cycles for 3 production apps.",
-      "Contributed to LLM code-generation training: prompt design and output evaluation against code-quality benchmarks.",
-      "Built a Django crypto trading bot on the Binance API for live signals, order execution and portfolio tracking.",
-      "Integrated Twilio and FullEnrich into a CRM for calling and automated lead enrichment.",
-    ],
-    stack: ["Next.js", "Flutter", "React Native", "NestJS", "Django", "LLMs"],
-  },
-  {
-    company: "FrontRow",
-    role: "Mobile Application Developer",
-    period: "Jun 2022 — Jan 2024",
-    location: "USA · Remote",
-    summary:
-      "Entertainment platform streaming premium music video content on iPhone and Apple TV.",
-    bullets: [
-      "Owned the iOS and tvOS UI in Swift (UIKit), taking features from spec to production independently.",
-      "Integrated YouTube iFrame playback with smooth performance across iPhone and Apple TV.",
-      "Drove content for 500+ media assets through Airtable so the editorial team could publish without engineering.",
-    ],
-    stack: ["Swift", "UIKit", "tvOS", "Airtable"],
-  },
-  {
-    company: "Upwork · XrossApps",
-    role: "Freelance Engineer · Top Rated",
-    period: "2020 — Present",
-    location: "Worldwide · Remote",
-    summary:
-      "Independent work for startups and founders, now under my studio XrossApps. 100% job success across fintech, healthcare, logistics and e-commerce.",
-    bullets: [
-      "Shipped 10+ apps to the App Store and Google Play for clients in the US, UK, Singapore and Kuwait.",
-      "Specialised in Flutter, FlutterFlow and Firebase builds with fast turnaround.",
-      "Maintained a 5.0 average rating across every contract.",
-    ],
-    stack: ["Flutter", "Firebase", "FlutterFlow", "Node.js"],
-  },
-];
+/** Derived from data/career.ts, the same records the resume uses. */
+export const experience: ExperienceItem[] = jobs.map((j) => ({
+  company: j.company,
+  role: j.role,
+  period: period(j.start, j.end),
+  location: j.remote ? `${j.location} · Remote` : j.location,
+  summary: j.summary,
+  bullets: j.bullets,
+  stack: j.stack,
+  current: !j.end,
+}));
 
+const edu = educationHistory[0];
 export const education = {
-  degree: "BS Computer Science",
-  school: "FAST NUCES, Lahore",
-  period: "2018 — 2022",
-  details: "CGPA 3.3 / 4.0 · Dean's List, Spring 2021",
+  degree: edu.degree,
+  school: edu.school,
+  period: period(edu.start, edu.end),
+  details: edu.details,
 };
 
 export interface NowItem {
@@ -204,6 +168,8 @@ export const about = {
 };
 
 import type { BrandName } from "../components/ui/brandIcons";
+import { APPS_SHIPPED, YEARS_EXPERIENCE, educationHistory, jobs, period } from "./career";
+import { liveAppCount } from "./projects";
 
 export interface SocialLink {
   name: string;

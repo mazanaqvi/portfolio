@@ -3,6 +3,7 @@ import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import WorkPage from "./pages/WorkPage";
 import ProjectPage from "./pages/ProjectPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import AboutPage from "./pages/AboutPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import ResumePage from "./pages/ResumePage";
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
       { path: "live-apps", element: <Navigate to="/work/?filter=mobile" replace /> },
       { path: "websites", element: <Navigate to="/work/?filter=web" replace /> },
       { path: "products", element: <Navigate to="/work/?filter=product" replace /> },
-      { path: "*", element: <Navigate to="/" replace /> },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);

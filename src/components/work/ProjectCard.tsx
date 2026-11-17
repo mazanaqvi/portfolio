@@ -70,6 +70,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, feature, eage
               {kindBadge[primaryKind].label}
             </span>
             {project.client && <span className="badge">{project.client}</span>}
+            {project.delisted && <span className="badge muted">No longer listed</span>}
           </div>
           <span className="project-view">
             Case study <ArrowUpRight />

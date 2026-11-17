@@ -45,7 +45,7 @@ const routes = [
  * trusts lastmod when it tracks real content changes, so each URL gets the
  * date of the last commit that touched these files, not the build date.
  */
-const SHARED = ["index.html", "src/data/site.ts"];
+const SHARED = ["index.html", "src/data/site.ts", "src/data/career.ts"];
 const pageSources = {
   "/": ["src/pages/HomePage.tsx", "src/components/home", "src/data/projects.ts", "src/data/reviews.ts"],
   "/work/": ["src/pages/WorkPage.tsx", "src/components/work", "src/data/projects.ts"],
@@ -56,7 +56,9 @@ const pageSources = {
 };
 const sourcesFor = (route) => {
   const id = route.match(/^\/work\/([^/]+)\/$/)?.[1];
-  const own = id ? ["src/pages/ProjectPage.tsx", "src/data/projects.ts", `public/img/projects/${id}.webp`] : pageSources[route] ?? [];
+  const own = id
+    ? ["src/pages/ProjectPage.tsx", "src/data/projects.ts", "src/data/storeRatings.ts", `public/img/projects/${id}.webp`]
+    : pageSources[route] ?? [];
   return [...SHARED, ...own];
 };
 

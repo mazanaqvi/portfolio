@@ -28,6 +28,10 @@ export interface Project {
   accent: string;
   featured?: boolean;
   links: ProjectLink[];
+  /** The app was published but is no longer listed in any store. */
+  delisted?: boolean;
+  /** Platform label when it can't be read from the store links (delisted apps). */
+  platforms?: string;
 }
 
 export const projects: Project[] = [
@@ -209,10 +213,10 @@ export const projects: Project[] = [
     role: "Mobile engineer",
     client: "Government of Kuwait",
     accent: "#b08968",
-    links: [
-      { type: "appstore", url: "https://apps.apple.com/us/app/kuwait-quran-%D9%85%D8%B5%D8%AD%D9%81-%D8%AF%D9%88%D9%84%D8%A9-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA/id1661634739" },
-      { type: "playstore", url: "https://play.google.com/store/apps/details?id=kw.gov.qsa.quranapp&hl=ur" },
-    ],
+    // Removed from the App Store and Google Play by the publisher (checked Nov 2026).
+    links: [],
+    delisted: true,
+    platforms: "iOS · Android",
   },
   {
     id: "matchark",
@@ -240,10 +244,8 @@ export const projects: Project[] = [
     year: "2023",
     role: "Mobile engineer",
     accent: "#f59e0b",
-    links: [
-      { type: "appstore", url: "https://apps.apple.com/pk/app/my-black-market/id6446054554" },
-      { type: "playstore", url: "https://play.google.com/store/apps/details?id=com.myblackmarkete.cypto_app" },
-    ],
+    // App Store listing removed by the publisher (checked Nov 2026); Google Play still live.
+    links: [{ type: "playstore", url: "https://play.google.com/store/apps/details?id=com.myblackmarkete.cypto_app" }],
   },
   {
     id: "mashrab-e-naab",
@@ -257,10 +259,8 @@ export const projects: Project[] = [
     year: "2022",
     role: "Mobile engineer",
     accent: "#ea580c",
-    links: [
-      { type: "appstore", url: "https://apps.apple.com/pk/app/mashrab-e-naab/id6443939739" },
-      { type: "playstore", url: "https://play.google.com/store/apps/details?id=com.azaan.mashrabenaab" },
-    ],
+    // App Store listing removed by the publisher (checked Nov 2026); Google Play still live.
+    links: [{ type: "playstore", url: "https://play.google.com/store/apps/details?id=com.azaan.mashrabenaab" }],
   },
   {
     id: "xrossapps",
@@ -317,3 +317,6 @@ export const projectShareImage = (id: string) => `/img/og/${id}.jpg`;
 
 export const hasStoreLink = (p: Project) =>
   p.links.some((l) => l.type === "appstore" || l.type === "playstore");
+
+/** Apps installable from a store today. Drives every "apps live" number on the site. */
+export const liveAppCount = projects.filter(hasStoreLink).length;

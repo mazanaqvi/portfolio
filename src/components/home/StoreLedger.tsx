@@ -5,6 +5,7 @@ import { projectPath } from "../../data/seo";
 import Reveal from "../ui/Reveal";
 import SectionHead from "../ui/SectionHead";
 import BrandIcon from "../ui/BrandIcon";
+import RatingBadge from "../ui/RatingBadge";
 
 const storeApps = projects.filter(hasStoreLink);
 
@@ -35,7 +36,10 @@ const StoreLedger: React.FC = () => (
               {p.title}
               <ArrowUpRight />
             </Link>
-            <span className="ledger-tag">{p.tagline}</span>
+            <span className="ledger-tag">
+              <RatingBadge projectId={p.id} />
+              <span className="ledger-tag-text">{p.tagline}</span>
+            </span>
             <span className="ledger-stack">{p.stack.slice(0, 2).join(" · ")}</span>
             <span className="ledger-stores">
               {p.links

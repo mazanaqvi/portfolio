@@ -1,10 +1,12 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { PROJECT_IMAGE, projectById, projectImage, projectSrcSet, projects } from "../data/projects";
-import { projectJsonLd, projectPath, projectSeo, pageSeo } from "../data/seo";
+import { notFoundSeo, projectJsonLd, projectPath, projectSeo } from "../data/seo";
+import NotFoundPage from "./NotFoundPage";
 import { useSeo } from "../hooks/useSeo";
 import Reveal from "../components/ui/Reveal";
 import StoreLink from "../components/ui/StoreLink";
+import { storeRatings } from "../data/storeRatings";
 import ContactCta from "../components/home/ContactCta";
 
 const kindNames: Record<string, string> = { mobile: "Mobile app", web: "Web app", product: "My product" };
@@ -20,11 +22,11 @@ const platforms = (types: string[]) => {
 const ProjectPage: React.FC = () => {
   const { id = "" } = useParams();
   const project = projectById(id);
-  // Hooks must run on every render, so fall back to the work page's tags
-  // for the split second before the redirect below.
-  useSeo(project ? projectSeo(project) : pageSeo.work, project ? projectJsonLd(project) : undefined);
+  const { pathname } = useLocation();
+  // Hooks run on every render; an unknown id gets the same tags as NotFoundPage.
+  useSeo(project ? projectSeo(project) : notFoundSeo(pathname), project ? projectJsonLd(project) : undefined);
 
-  if (!project) return <Navigate to="/work/" replace />;
+  if (!project) return <NotFoundPage />;
 
   const index = projects.findIndex((p) => p.id === project.id);
   const prev = projects[(index - 1 + projects.length) % projects.length];
@@ -93,8 +95,16 @@ const ProjectPage: React.FC = () => {
                 )}
                 <div>
                   <dt className="mono">Platform</dt>
-                  <dd>{platforms(project.links.map((l) => l.type))}</dd>
+                  <dd>{project.platforms ?? platforms(project.links.map((l) => l.type))}</dd>
                 </div>
+                {storeRatings[project.id] && (
+                  <div>
+                    <dt className="mono">App Store rating</dt>
+                    <dd>
+                      {storeRatings[project.id].rating.toFixed(1)} / 5 from {storeRatings[project.id].count} ratings (US)
+                    </dd>
+                  </div>
+                )}
                 <div>
                   <dt className="mono">Year</dt>
                   <dd>{project.year}</dd>
@@ -111,6 +121,11 @@ const ProjectPage: React.FC = () => {
                 </div>
               </dl>
               <div className="case-links">
+                {project.delisted && (
+                  <p className="case-delisted">
+                    The publisher has since removed this app from the App Store and Google Play.
+                  </p>
+                )}
                 {project.links.map((l) => (
                   <StoreLink key={l.url} link={l} />
                 ))}

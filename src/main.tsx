@@ -40,5 +40,20 @@ function mount() {
 // On a prerendered page, let the browser paint the static HTML first, then
 // take over in the next task. Without this the app can mount before the
 // first paint, which makes the largest paint wait for all the JavaScript.
-if (prerendered) requestAnimationFrame(() => setTimeout(mount, 0));
-else mount();
+//
+// Animation frames don't run in background tabs or some embedded views, so
+// a hidden page mounts straight away (there is no paint to protect) and a
+// timer guarantees the app always starts even if no frame ever comes.
+let started = false;
+const start = () => {
+  if (started) return;
+  started = true;
+  mount();
+};
+
+if (!prerendered || document.visibilityState === "hidden") {
+  start();
+} else {
+  requestAnimationFrame(() => setTimeout(start, 0));
+  setTimeout(start, 1500);
+}
