@@ -20,6 +20,7 @@ The visual system is called **Ink & Signal**: warm near-black canvases in dark m
 
 Interactive bits worth knowing about:
 
+- The first page load of each visit plays a short name intro (about 1.8 s), written in plain HTML and CSS in `index.html` so it appears before any JavaScript. Any click, tap, scroll or key skips it, reduced-motion settings hide it, and later page loads in the same visit skip it (`sessionStorage`).
 - `⌘K` / `Ctrl+K` opens a command palette (pages, projects, copy email, theme). `T` toggles the theme.
 - Project cards have a cursor-following spotlight and link to a case-study page (`/work/glory-global-driver/`); the active filter lives in the URL (`/work/?filter=mobile`).
 - Reviews are a draggable carousel on the home page and a full list on `/reviews`.
